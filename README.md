@@ -114,7 +114,7 @@ Ready-to-copy templates:
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/your-username/archestra-beginner-goldmine.git
+git clone https://github.com/ParasJagdale/archestra-beginner-goldmine.git
 cd archestra-beginner-goldmine
 ```
 
@@ -139,7 +139,7 @@ open index.html
 2. Import it to Vercel
 3. Deploy with one click - no configuration needed!
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/archestra-beginner-goldmine)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ParasJagdale/archestra-beginner-goldmine)
 
 ## 📖 How to Use This Resource
 
@@ -237,6 +237,6 @@ After mastering the content here:
 
 **Built with ❤️ by the Archestra community**
 
-[⭐ Star on GitHub](https://github.com/your-username/archestra-beginner-goldmine) | [🌐 Live Demo](https://archestra-beginner-goldmine.vercel.app) | [📖 Docs](docs/)
+[⭐ Star on GitHub](https://github.com/ParasJagdale/archestra-beginner-goldmine) | [🌐 Live Demo](https://archestra-beginner-goldmine.vercel.app) | [📖 Docs](docs/)
 
 </div>
