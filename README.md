@@ -235,8 +235,8 @@ After mastering the content here:
 
 <div align="center">
 
-**Built with ❤️ by the Archestra community**
+**Built with ❤️ by Paras Jagdale**
 
-[⭐ Star on GitHub](https://github.com/ParasJagdale/archestra-beginner-goldmine) | [🌐 Live Demo](https://archestra-beginner-goldmine.vercel.app) | [📖 Docs](docs/)
+[⭐ Star on GitHub](https://github.com/ParasJagdale/archestra-beginner-goldmine) | [🌐 Live Demo](https://archestra-beginner-goldmine.vercel.app) | [📖 Repository](https://github.com/ParasJagdale/archestra-beginner-goldmine)
 
 </div>
