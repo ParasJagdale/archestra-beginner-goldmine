@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MCP Basics - Archestra Beginner Goldmine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/main.css" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: { colors: { primary: "#3b82f6", secondary: "#8b5cf6" } },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 z-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a
+              href="index.html"
+              class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
+            >
+              ⚡ Archestra Goldmine
+            </a>
+          </div>
+          <div class="flex items-center gap-4">
+            <button
+              id="theme-toggle"
+              class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              <svg
+                class="w-6 h-6 hidden dark:block"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                ></path>
+              </svg>
+              <svg
+                class="w-6 h-6 block dark:hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex pt-16">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <nav class="space-y-6">
+          <div>
+            <a
+              href="index.html"
+              class="block text-gray-600 dark:text-gray-400 hover:text-blue-600 mb-2"
+              >← Back to Home</a
+            >
+          </div>
+          <div>
+            <h3 class="font-bold mb-2">Topics</h3>
+            <ul class="space-y-1 text-sm">
+              <li>
+                <a
+                  href="#mcp-overview"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >MCP Overview</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#lifecycle"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >MCP Lifecycle</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#initialize"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Initialize</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#tools-list"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Tools/List</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#tools-call"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Tools/Call</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#transport"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Streaming Transport</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content flex-1 max-w-4xl">
+        <div class="mb-8">
+          <h1 class="text-5xl font-bold mb-4">📖 MCP Basics</h1>
+          <p class="text-xl text-gray-600 dark:text-gray-400">
+            Master the Model Context Protocol from the ground up. Learn the
+            lifecycle, messages, and transport layer.
+          </p>
+        </div>
+
+        <!-- MCP Overview -->
+        <section id="mcp-overview" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">
+            🔌 What is the Model Context Protocol?
+          </h2>
+
+          <p class="text-lg mb-6">
+            The <strong>Model Context Protocol (MCP)</strong> is an open
+            standard that provides a unified way for AI models to interact with
+            external tools, data sources, and APIs. Think of it as a universal
+            adapter for AI agents.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div
+              class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6 border border-blue-300 dark:border-blue-700"
+            >
+              <h3 class="text-xl font-bold mb-3">🎯 Key Benefits</h3>
+              <ul class="space-y-2 text-sm">
+                <li>
+                  ✓ <strong>Standardized:</strong> Write once, use anywhere
+                </li>
+                <li>✓ <strong>Secure:</strong> Controlled execution context</li>
+                <li>✓ <strong>Composable:</strong> Mix and match tools</li>
+                <li>✓ <strong>Open:</strong> No vendor lock-in</li>
+              </ul>
+            </div>
+            <div
+              class="bg-green-50 dark:bg-green-900/20 rounded-lg p-6 border border-green-300 dark:border-green-700"
+            >
+              <h3 class="text-xl font-bold mb-3">🛠️ Core Components</h3>
+              <ul class="space-y-2 text-sm">
+                <li>• <strong>Server:</strong> Exposes tools</li>
+                <li>• <strong>Client:</strong> Invokes tools</li>
+                <li>• <strong>Transport:</strong> Communication layer</li>
+                <li>• <strong>Protocol:</strong> JSON-RPC 2.0 messages</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="alert alert-info">
+            <strong>💡 Key Insight:</strong> MCP is to AI tools what REST is to
+            web APIs - a standard protocol everyone can use.
+          </div>
+        </section>
+
+        <!-- MCP Lifecycle -->
+        <section id="lifecycle" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">🔄 The MCP Lifecycle</h2>
+
+          <p class="text-lg mb-6">
+            Every MCP interaction follows a predictable lifecycle. Understanding
+            this is crucial for building reliable agents.
+          </p>
+
+          <div class="diagram mb-6">
+            <div class="space-y-6">
+              <div class="flex items-center">
+                <div
+                  class="bg-purple-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mr-4"
+                >
+                  1
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold">Connection Established</h3>
+                  <p class="text-gray-600 dark:text-gray-400">
+                    Client connects to MCP server via transport (stdio, SSE,
+                    WebSocket)
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mr-4"
+                >
+                  2
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold">Initialize Handshake</h3>
+                  <p class="text-gray-600 dark:text-gray-400">
+                    Client and server exchange capabilities and protocol
+                    versions
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="bg-green-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mr-4"
+                >
+                  3
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold">Tool Discovery</h3>
+                  <p class="text-gray-600 dark:text-gray-400">
+                    Client requests tools/list to see available tools
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mr-4"
+                >
+                  4
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold">Tool Invocation</h3>
+                  <p class="text-gray-600 dark:text-gray-400">
+                    Client sends tools/call with arguments to execute tool
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="bg-pink-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mr-4"
+                >
+                  5
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold">Result Returned</h3>
+                  <p class="text-gray-600 dark:text-gray-400">
+                    Server executes tool and sends result back to client
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Initialize -->
+        <section id="initialize" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">🤝 1. Initialize</h2>
+
+          <p class="text-lg mb-4">
+            The initialization phase establishes the connection and negotiates
+            capabilities.
+          </p>
+
+          <h3 class="text-xl font-bold mb-3">Request (from Client)</h3>
+          <div class="code-block relative mb-6">
+            <pre><code>{
+  "jsonrpc": "2.0",
+  "method": "initialize",
+  "params": {
+    "protocolVersion": "2024-11-05",
+    "capabilities": {
+      "tools": {}
+    },
+    "clientInfo": {
+      "name": "my-agent",
+      "version": "1.0.0"
+    }
+  },
+  "id": 1
+}</code></pre>
+          </div>
+
+          <h3 class="text-xl font-bold mb-3">Response (from Server)</h3>
+          <div class="code-block relative mb-6">
+            <pre><code>{
+  "jsonrpc": "2.0",
+  "result": {
+    "protocolVersion": "2024-11-05",
+    "capabilities": {
+      "tools": {}
+    },
+    "serverInfo": {
+      "name": "my-mcp-server",
+      "version": "1.0.0"
+    }
+  },
+  "id": 1
+}</code></pre>
+          </div>
+
+          <div class="alert alert-warning">
+            <strong>⚠️ Important:</strong> Both client and server must agree on
+            a protocol version. Mismatched versions will cause connection
+            failures.
+          </div>
+        </section>
+
+        <!-- Tools/List -->
+        <section id="tools-list" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">📋 2. Tools/List</h2>
+
+          <p class="text-lg mb-4">
+            After initialization, the client discovers what tools are available
+            by calling <code>tools/list</code>.
+          </p>
+
+          <h3 class="text-xl font-bold mb-3">Request</h3>
+          <div class="code-block relative mb-6">
+            <pre><code>{
+  "jsonrpc": "2.0",
+  "method": "tools/list",
+  "id": 2
+}</code></pre>
+          </div>
+
+          <h3 class="text-xl font-bold mb-3">Response</h3>
+          <div class="code-block relative mb-6">
+            <pre><code>{
+  "jsonrpc": "2.0",
+  "result": {
+    "tools": [
+      {
+        "name": "calculate",
+        "description": "Perform basic mathematical operations",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "type": "string",
+              "enum": ["add", "subtract", "multiply", "divide"],
+              "description": "The operation to perform"
+            },
+            "a": {
+              "type": "number",
+              "description": "First number"
+            },
+            "b": {
+              "type": "number",
+              "description": "Second number"
+            }
+          },
+          "required": ["operation", "a", "b"]
+        }
+      }
+    ]
+  },
+  "id": 2
+}</code></pre>
+          </div>
+
+          <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+            <h3 class="text-lg font-bold mb-3">Tool Schema Explained</h3>
+            <ul class="space-y-2">
+              <li><strong>name:</strong> Unique identifier for the tool</li>
+              <li>
+                <strong>description:</strong> What the tool does (helps AI
+                decide when to use it)
+              </li>
+              <li>
+                <strong>inputSchema:</strong> JSON Schema defining
+                required/optional parameters
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Tools/Call -->
+        <section id="tools-call" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">⚡ 3. Tools/Call</h2>
+
+          <p class="text-lg mb-4">
+            When the AI agent decides to use a tool, it sends a
+            <code>tools/call</code> request.
+          </p>
+
+          <h3 class="text-xl font-bold mb-3">Request</h3>
+          <div class="code-block relative mb-6">
+            <pre><code>{
+  "jsonrpc": "2.0",
+  "method": "tools/call",
+  "params": {
+    "name": "calculate",
+    "arguments": {
+      "operation": "multiply",
+      "a": 42,
+      "b": 13
+    }
+  },
+  "id": 3
+}</code></pre>
+          </div>
+
+          <h3 class="text-xl font-bold mb-3">Response (Success)</h3>
+          <div class="code-block relative mb-6">
+            <pre><code>{
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Result: 546"
+      }
+    ]
+  },
+  "id": 3
+}</code></pre>
+          </div>
+
+          <h3 class="text-xl font-bold mb-3">Response (Error)</h3>
+          <div class="code-block relative mb-6">
+            <pre><code>{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32602,
+    "message": "Invalid params",
+    "data": "Parameter 'operation' must be one of: add, subtract, multiply, divide"
+  },
+  "id": 3
+}</code></pre>
+          </div>
+
+          <div class="alert alert-info">
+            <strong>💡 Pro Tip:</strong> Always return detailed error messages.
+            They help the AI agent understand what went wrong and try again with
+            corrected parameters.
+          </div>
+        </section>
+
+        <!-- Streaming Transport -->
+        <section id="transport" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">🌊 Streaming Transport</h2>
+
+          <p class="text-lg mb-4">
+            MCP supports multiple transport mechanisms for client-server
+            communication:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700"
+            >
+              <h3 class="text-xl font-bold mb-3">📡 Stdio</h3>
+              <p class="text-sm mb-3">Standard input/output pipes</p>
+              <div class="text-xs bg-gray-100 dark:bg-gray-900 rounded p-2">
+                <strong>Use when:</strong> Local process communication
+              </div>
+            </div>
+
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700"
+            >
+              <h3 class="text-xl font-bold mb-3">🔄 SSE</h3>
+              <p class="text-sm mb-3">Server-Sent Events over HTTP</p>
+              <div class="text-xs bg-gray-100 dark:bg-gray-900 rounded p-2">
+                <strong>Use when:</strong> Web-based clients, firewalls
+              </div>
+            </div>
+
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700"
+            >
+              <h3 class="text-xl font-bold mb-3">⚡ WebSocket</h3>
+              <p class="text-sm mb-3">Bidirectional real-time connection</p>
+              <div class="text-xs bg-gray-100 dark:bg-gray-900 rounded p-2">
+                <strong>Use when:</strong> Two-way streaming needed
+              </div>
+            </div>
+          </div>
+
+          <h3 class="text-xl font-bold mb-3">Example: SSE Transport Setup</h3>
+          <div class="code-block relative mb-6">
+            <pre><code>// Server side
+import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
+
+app.get("/mcp/sse", async (req, res) => {
+  const transport = new SSEServerTransport("/mcp/message", res);
+  await server.connect(transport);
+});
+
+// Client side
+import { SSEClientTransport } from "@modelcontextprotocol/sdk/client/sse.js";
+
+const transport = new SSEClientTransport(
+  new URL("http://localhost:3000/mcp/sse")
+);
+await client.connect(transport);
+</code></pre>
+          </div>
+
+          <div class="alert alert-warning">
+            <strong>⚠️ Keep-Alive:</strong> For long-running operations,
+            implement keep-alive pings to prevent transport timeouts.
+          </div>
+        </section>
+
+        <!-- Quick Reference -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">📚 Quick Reference</h2>
+
+          <div
+            class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden"
+          >
+            <table class="w-full">
+              <thead class="bg-gray-50 dark:bg-gray-700">
+                <tr>
+                  <th class="px-6 py-3 text-left font-bold">Method</th>
+                  <th class="px-6 py-3 text-left font-bold">Purpose</th>
+                  <th class="px-6 py-3 text-left font-bold">Required</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                <tr>
+                  <td class="px-6 py-4"><code>initialize</code></td>
+                  <td class="px-6 py-4">
+                    Establish connection and capabilities
+                  </td>
+                  <td class="px-6 py-4">✅ Yes</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4"><code>tools/list</code></td>
+                  <td class="px-6 py-4">Discover available tools</td>
+                  <td class="px-6 py-4">✅ Yes</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4"><code>tools/call</code></td>
+                  <td class="px-6 py-4">Execute a tool</td>
+                  <td class="px-6 py-4">✅ Yes</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4"><code>resources/list</code></td>
+                  <td class="px-6 py-4">List available resources</td>
+                  <td class="px-6 py-4">❌ Optional</td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4"><code>prompts/list</code></td>
+                  <td class="px-6 py-4">List available prompts</td>
+                  <td class="px-6 py-4">❌ Optional</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Next Steps -->
+        <div
+          class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-8 text-white text-center"
+        >
+          <h2 class="text-3xl font-bold mb-4">Ready to Build? 🚀</h2>
+          <p class="text-xl mb-6">
+            Now that you understand MCP, start building your first tool!
+          </p>
+          <div class="flex justify-center gap-4">
+            <a
+              href="tutorials.html"
+              class="inline-block px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100"
+            >
+              Start Tutorials
+            </a>
+            <a
+              href="templates.html"
+              class="inline-block px-8 py-4 bg-transparent border-2 border-white rounded-lg font-semibold hover:bg-white hover:text-blue-600"
+            >
+              Browse Templates
+            </a>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/code-copy.js"></script>
+  </body>
+</html>

@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Architecture - Archestra Beginner Goldmine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/main.css" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: { colors: { primary: "#3b82f6", secondary: "#8b5cf6" } },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 z-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a
+              href="index.html"
+              class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
+            >
+              ⚡ Archestra Goldmine
+            </a>
+          </div>
+          <div class="flex items-center gap-4">
+            <button
+              id="theme-toggle"
+              class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              <svg
+                class="w-6 h-6 hidden dark:block"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                ></path>
+              </svg>
+              <svg
+                class="w-6 h-6 block dark:hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex pt-16">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <nav class="space-y-6">
+          <div>
+            <a
+              href="index.html"
+              class="block text-gray-600 dark:text-gray-400 hover:text-blue-600 mb-2"
+              >← Back to Home</a
+            >
+          </div>
+          <div>
+            <h3 class="font-bold mb-2">Topics</h3>
+            <ul class="space-y-1 text-sm">
+              <li>
+                <a
+                  href="#overview"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >System Overview</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#agent-flow"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Agent Workflow</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#multi-tool"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Multi-Tool Orchestration</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#production"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Production Patterns</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#observability"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Observability</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#scaling"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Scaling Strategies</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content flex-1 max-w-4xl">
+        <div class="mb-8">
+          <h1 class="text-5xl font-bold mb-4">🏗️ Architecture Deep Dive</h1>
+          <p class="text-xl text-gray-600 dark:text-gray-400">
+            Advanced MCP architecture patterns, multi-tool orchestration, and
+            production deployment strategies.
+          </p>
+        </div>
+
+        <!-- System Overview -->
+        <section id="overview" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">
+            🌐 Complete System Architecture
+          </h2>
+
+          <div class="diagram mb-8">
+            <div class="space-y-4">
+              <!-- User Layer -->
+              <div
+                class="bg-purple-100 dark:bg-purple-900/30 border-2 border-purple-500 rounded-lg p-4 text-center"
+              >
+                <strong class="text-lg">👤 End User</strong>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  Human making requests
+                </p>
+              </div>
+
+              <div class="text-center text-2xl">↕</div>
+
+              <!-- Agent Layer -->
+              <div
+                class="bg-blue-100 dark:bg-blue-900/30 border-2 border-blue-500 rounded-lg p-4"
+              >
+                <div class="text-center mb-4">
+                  <strong class="text-lg">🤖 AI Agent (MCP Client)</strong>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    Decision-making brain
+                  </p>
+                </div>
+                <div class="grid grid-cols-3 gap-2 text-xs">
+                  <div class="bg-white dark:bg-gray-800 rounded p-2">
+                    Intent<br />Understanding
+                  </div>
+                  <div class="bg-white dark:bg-gray-800 rounded p-2">
+                    Tool<br />Selection
+                  </div>
+                  <div class="bg-white dark:bg-gray-800 rounded p-2">
+                    Response<br />Synthesis
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-center text-2xl">↕</div>
+
+              <!-- Gateway Layer -->
+              <div
+                class="bg-cyan-100 dark:bg-cyan-900/30 border-2 border-cyan-500 rounded-lg p-4 text-center"
+              >
+                <strong class="text-lg">🌉 Archestra Gateway</strong>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  Request routing & load balancing
+                </p>
+              </div>
+
+              <div class="text-center text-2xl">↕</div>
+
+              <!-- MCP Servers Layer -->
+              <div class="grid grid-cols-3 gap-4">
+                <div
+                  class="bg-green-100 dark:bg-green-900/30 border-2 border-green-500 rounded-lg p-4 text-center"
+                >
+                  <strong>📊 MCP Server 1</strong>
+                  <p class="text-xs mt-2">Analytics Tools</p>
+                </div>
+                <div
+                  class="bg-green-100 dark:bg-green-900/30 border-2 border-green-500 rounded-lg p-4 text-center"
+                >
+                  <strong>🐙 MCP Server 2</strong>
+                  <p class="text-xs mt-2">GitHub Tools</p>
+                </div>
+                <div
+                  class="bg-green-100 dark:bg-green-900/30 border-2 border-green-500 rounded-lg p-4 text-center"
+                >
+                  <strong>💬 MCP Server 3</strong>
+                  <p class="text-xs mt-2">Slack Tools</p>
+                </div>
+              </div>
+
+              <div class="text-center text-2xl">↕</div>
+
+              <!-- External Systems -->
+              <div class="grid grid-cols-3 gap-4">
+                <div
+                  class="bg-gray-100 dark:bg-gray-800 border border-gray-400 rounded-lg p-3 text-center text-sm"
+                >
+                  <strong>📈 Analytics API</strong>
+                </div>
+                <div
+                  class="bg-gray-100 dark:bg-gray-800 border border-gray-400 rounded-lg p-3 text-center text-sm"
+                >
+                  <strong>🔗 GitHub API</strong>
+                </div>
+                <div
+                  class="bg-gray-100 dark:bg-gray-800 border border-gray-400 rounded-lg p-3 text-center text-sm"
+                >
+                  <strong>💬 Slack API</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-info">
+            <strong>💡 Key Concept:</strong> The agent doesn't directly call
+            external APIs. It uses MCP servers as abstraction layers, making the
+            system modular and testable.
+          </div>
+        </section>
+
+        <!-- Agent Workflow -->
+        <section id="agent-flow" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">🔄 Complete Agent Workflow</h2>
+
+          <p class="text-lg mb-6">
+            Here's what happens when a user asks: "Create a GitHub issue for the
+            bug in our analytics dashboard"
+          </p>
+
+          <div class="space-y-6">
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg p-6 border-l-4 border-purple-500"
+            >
+              <div class="flex items-start">
+                <div
+                  class="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0"
+                >
+                  1
+                </div>
+                <div>
+                  <strong class="text-lg">User Input Processing</strong>
+                  <p class="text-gray-600 dark:text-gray-400 mt-2">
+                    Agent receives the request and understands intent: "Need to
+                    create GitHub issue"
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg p-6 border-l-4 border-blue-500"
+            >
+              <div class="flex items-start">
+                <div
+                  class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0"
+                >
+                  2
+                </div>
+                <div>
+                  <strong class="text-lg">Tool Discovery</strong>
+                  <p class="text-gray-600 dark:text-gray-400 mt-2">
+                    Agent queries gateway for available tools, finds
+                    <code>create_github_issue</code>
+                  </p>
+                  <div class="code-block relative mt-3">
+                    <pre><code>GET /tools/list
+Response: [{ name: "create_github_issue", ... }]</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg p-6 border-l-4 border-green-500"
+            >
+              <div class="flex items-start">
+                <div
+                  class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0"
+                >
+                  3
+                </div>
+                <div>
+                  <strong class="text-lg">Parameter Extraction</strong>
+                  <p class="text-gray-600 dark:text-gray-400 mt-2">
+                    AI extracts required parameters from user request
+                  </p>
+                  <div
+                    class="bg-gray-50 dark:bg-gray-900 rounded p-3 mt-3 text-sm"
+                  >
+                    <strong>Extracted:</strong> title="Bug in analytics
+                    dashboard", repo="our-repo"
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg p-6 border-l-4 border-orange-500"
+            >
+              <div class="flex items-start">
+                <div
+                  class="bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0"
+                >
+                  4
+                </div>
+                <div>
+                  <strong class="text-lg">Tool Invocation</strong>
+                  <p class="text-gray-600 dark:text-gray-400 mt-2">
+                    Agent calls the tool through the gateway
+                  </p>
+                  <div class="code-block relative mt-3">
+                    <pre><code>POST /tools/call
+{
+  "name": "create_github_issue",
+  "arguments": {
+    "title": "Bug in analytics dashboard",
+    "repo": "our-repo"
+  }
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg p-6 border-l-4 border-pink-500"
+            >
+              <div class="flex items-start">
+                <div
+                  class="bg-pink-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0"
+                >
+                  5
+                </div>
+                <div>
+                  <strong class="text-lg">Result Processing</strong>
+                  <p class="text-gray-600 dark:text-gray-400 mt-2">
+                    Agent receives result and formats response for user
+                  </p>
+                  <div
+                    class="bg-green-50 dark:bg-green-900/20 rounded p-3 mt-3"
+                  >
+                    <strong>Response:</strong> "✅ Created issue #123:
+                    https://github.com/our-repo/issues/123"
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Multi-Tool Orchestration -->
+        <section id="multi-tool" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">🎯 Multi-Tool Orchestration</h2>
+
+          <p class="text-lg mb-6">
+            The real power of MCP comes from chaining multiple tools together.
+            Example: "Analyze our error logs and alert the team on Slack"
+          </p>
+
+          <div class="diagram mb-6">
+            <div class="space-y-4">
+              <div
+                class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500"
+              >
+                <strong>Step 1:</strong> <code>analyze_logs</code> → Extract
+                error patterns
+              </div>
+              <div class="text-center">↓</div>
+              <div
+                class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500"
+              >
+                <strong>Step 2:</strong> <code>query_metrics</code> → Get impact
+                data (affected users, error rate)
+              </div>
+              <div class="text-center">↓</div>
+              <div
+                class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500"
+              >
+                <strong>Step 3:</strong> <code>create_github_issue</code> →
+                Document the bug
+              </div>
+              <div class="text-center">↓</div>
+              <div
+                class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 border-l-4 border-orange-500"
+              >
+                <strong>Step 4:</strong> <code>send_slack_alert</code> → Notify
+                engineering team
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-success">
+            <strong>✅ The agent autonomously decides:</strong>
+            <ul class="list-disc list-inside ml-4 mt-2">
+              <li>Which tools to use</li>
+              <li>In what order</li>
+              <li>What data to pass between them</li>
+              <li>How to handle errors</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Production Patterns -->
+        <section id="production" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">
+            🏭 Production Deployment Patterns
+          </h2>
+
+          <div class="space-y-6">
+            <!-- Pattern 1 -->
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700"
+            >
+              <h3 class="text-2xl font-bold mb-4">
+                Pattern 1: Centralized Gateway
+              </h3>
+              <p class="mb-4">
+                Best for: Teams with multiple agents sharing tools
+              </p>
+              <div class="bg-gray-50 dark:bg-gray-900 rounded p-4">
+                <strong>Architecture:</strong>
+                <ul class="list-disc list-inside ml-4 mt-2 space-y-1 text-sm">
+                  <li>Single gateway instance</li>
+                  <li>All agents connect to it</li>
+                  <li>Centralized logging and monitoring</li>
+                  <li>Shared rate limiting and authentication</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Pattern 2 -->
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700"
+            >
+              <h3 class="text-2xl font-bold mb-4">
+                Pattern 2: Direct Connection
+              </h3>
+              <p class="mb-4">
+                Best for: Simple deployments, single agent use cases
+              </p>
+              <div class="bg-gray-50 dark:bg-gray-900 rounded p-4">
+                <strong>Architecture:</strong>
+                <ul class="list-disc list-inside ml-4 mt-2 space-y-1 text-sm">
+                  <li>Agent directly connects to MCP servers</li>
+                  <li>No gateway overhead</li>
+                  <li>Simpler debugging</li>
+                  <li>Fewer moving parts</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Pattern 3 -->
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700"
+            >
+              <h3 class="text-2xl font-bold mb-4">
+                Pattern 3: Distributed Gateways
+              </h3>
+              <p class="mb-4">Best for: High-scale, multi-region deployments</p>
+              <div class="bg-gray-50 dark:bg-gray-900 rounded p-4">
+                <strong>Architecture:</strong>
+                <ul class="list-disc list-inside ml-4 mt-2 space-y-1 text-sm">
+                  <li>Regional gateway instances</li>
+                  <li>Load balancing across gateways</li>
+                  <li>Reduced latency</li>
+                  <li>High availability failover</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Observability -->
+        <section id="observability" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">📊 Observability & Monitoring</h2>
+
+          <p class="text-lg mb-6">
+            What to monitor in production MCP deployments:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div
+              class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6 border border-blue-300 dark:border-blue-700"
+            >
+              <h3 class="text-xl font-bold mb-3">📈 Key Metrics</h3>
+              <ul class="space-y-2 text-sm">
+                <li>✓ Tool call success rate</li>
+                <li>✓ Average tool latency</li>
+                <li>✓ Gateway request throughput</li>
+                <li>✓ Error rates by tool</li>
+                <li>✓ Agent decision time</li>
+              </ul>
+            </div>
+
+            <div
+              class="bg-green-50 dark:bg-green-900/20 rounded-lg p-6 border border-green-300 dark:border-green-700"
+            >
+              <h3 class="text-xl font-bold mb-3">🔍 Logging Best Practices</h3>
+              <ul class="space-y-2 text-sm">
+                <li>✓ Log all tool invocations</li>
+                <li>✓ Include request/response payloads</li>
+                <li>✓ Track correlation IDs</li>
+                <li>✓ Log agent reasoning steps</li>
+                <li>✓ Structured logging (JSON)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="code-block relative mt-6">
+            <pre><code>// Example structured logging
+{
+  "timestamp": "2026-02-13T10:30:00Z",
+  "level": "info",
+  "event": "tool_call",
+  "correlation_id": "req-abc123",
+  "tool": "create_github_issue",
+  "duration_ms": 245,
+  "success": true,
+  "metadata": {
+    "repo": "our-repo",
+    "issue_number": 123
+  }
+}</code></pre>
+          </div>
+        </section>
+
+        <!-- Scaling -->
+        <section id="scaling" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">⚡ Scaling Strategies</h2>
+
+          <div class="space-y-6">
+            <div
+              class="border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-900/20 p-6 rounded"
+            >
+              <h3 class="text-xl font-bold mb-3">Horizontal Scaling</h3>
+              <p class="mb-3">
+                Run multiple instances of MCP servers and gateways behind a load
+                balancer
+              </p>
+              <div class="bg-white dark:bg-gray-800 rounded p-4">
+                <strong>Benefits:</strong> Handle more concurrent requests,
+                fault tolerance
+              </div>
+            </div>
+
+            <div
+              class="border-l-4 border-green-500 bg-green-50 dark:bg-green-900/20 p-6 rounded"
+            >
+              <h3 class="text-xl font-bold mb-3">Caching</h3>
+              <p class="mb-3">
+                Cache frequently-used tool results at the gateway level
+              </p>
+              <div class="bg-white dark:bg-gray-800 rounded p-4">
+                <strong>Benefits:</strong> Reduced API calls, faster response
+                times, cost savings
+              </div>
+            </div>
+
+            <div
+              class="border-l-4 border-purple-500 bg-purple-50 dark:bg-purple-900/20 p-6 rounded"
+            >
+              <h3 class="text-xl font-bold mb-3">Rate Limiting</h3>
+              <p class="mb-3">Implement per-tool and per-agent rate limits</p>
+              <div class="bg-white dark:bg-gray-800 rounded p-4">
+                <strong>Benefits:</strong> Prevent API abuse, protect external
+                services, cost control
+              </div>
+            </div>
+
+            <div
+              class="border-l-4 border-orange-500 bg-orange-50 dark:bg-orange-900/20 p-6 rounded"
+            >
+              <h3 class="text-xl font-bold mb-3">Async Processing</h3>
+              <p class="mb-3">Use queues for long-running tool operations</p>
+              <div class="bg-white dark:bg-gray-800 rounded p-4">
+                <strong>Benefits:</strong> Better resource utilization, improved
+                user experience
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Best Practices -->
+        <div
+          class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg p-8 text-white"
+        >
+          <h2 class="text-3xl font-bold mb-6">
+            ✨ Architecture Best Practices
+          </h2>
+          <div class="space-y-3">
+            <p>
+              ✓ <strong>Fail gracefully:</strong> Always have fallback behavior
+              when tools fail
+            </p>
+            <p>
+              ✓ <strong>Monitor everything:</strong> You can't improve what you
+              don't measure
+            </p>
+            <p>
+              ✓ <strong>Keep tools focused:</strong> One tool, one
+              responsibility
+            </p>
+            <p>
+              ✓ <strong>Version your tools:</strong> Support backward
+              compatibility
+            </p>
+            <p>
+              ✓ <strong>Test tool combinations:</strong> Integration tests are
+              crucial
+            </p>
+            <p>
+              ✓ <strong>Document tool behavior:</strong> Good descriptions help
+              agents choose correctly
+            </p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/code-copy.js"></script>
+  </body>
+</html>

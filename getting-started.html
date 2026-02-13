@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Getting Started - Archestra Beginner Goldmine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/main.css" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: { colors: { primary: "#3b82f6", secondary: "#8b5cf6" } },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 z-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a
+              href="index.html"
+              class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
+            >
+              ⚡ Archestra Goldmine
+            </a>
+          </div>
+          <div class="flex items-center gap-4">
+            <button
+              id="theme-toggle"
+              class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              <svg
+                class="w-6 h-6 hidden dark:block"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                ></path>
+              </svg>
+              <svg
+                class="w-6 h-6 block dark:hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex pt-16">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <nav class="space-y-6">
+          <div>
+            <a
+              href="index.html"
+              class="block text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 mb-2"
+              >← Back to Home</a
+            >
+          </div>
+          <div>
+            <h3 class="font-bold mb-2">Getting Started</h3>
+            <ul class="space-y-1 text-sm">
+              <li>
+                <a
+                  href="#what-is-archestra"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >What is Archestra?</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#what-is-mcp"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >What is MCP?</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#why-mcp"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Why MCP Matters</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#how-it-works"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >How It Works</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#installation"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Installation</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#first-steps"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Your First Steps</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold mb-2">Quick Links</h3>
+            <ul class="space-y-1 text-sm">
+              <li>
+                <a
+                  href="mcp-basics.html"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >MCP Basics</a
+                >
+              </li>
+              <li>
+                <a
+                  href="tutorials.html"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Tutorials</a
+                >
+              </li>
+              <li>
+                <a
+                  href="troubleshooting.html"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Troubleshooting</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content flex-1 max-w-4xl">
+        <div class="mb-8">
+          <h1 class="text-5xl font-bold mb-4">
+            🚀 Getting Started with Archestra
+          </h1>
+          <p class="text-xl text-gray-600 dark:text-gray-400">
+            Welcome to your journey into MCP-based AI agent development. This
+            guide will take you from zero to building your first intelligent
+            agent.
+          </p>
+        </div>
+
+        <!-- What is Archestra -->
+        <section id="what-is-archestra" class="mb-12">
+          <h2 class="text-3xl font-bold mb-4">🎯 What is Archestra?</h2>
+          <p class="mb-4 text-lg">
+            <strong>Archestra</strong> is an AI agent orchestration platform
+            that enables developers to build, deploy, and manage intelligent
+            agents that can interact with external systems through the Model
+            Context Protocol (MCP).
+          </p>
+          <div class="alert alert-info">
+            <strong>💡 Think of it this way:</strong> If AI is the brain, and
+            MCP is the nervous system, Archestra is the body that coordinates
+            everything to take action.
+          </div>
+          <p class="mt-4 text-lg">With Archestra, you can:</p>
+          <ul class="list-disc list-inside space-y-2 ml-4 text-lg">
+            <li>Create AI agents that interact with real-world tools</li>
+            <li>Connect multiple MCP servers to a single agent</li>
+            <li>Orchestrate complex multi-step workflows</li>
+            <li>Monitor and debug agent behavior in real-time</li>
+            <li>Scale from prototype to production seamlessly</li>
+          </ul>
+        </section>
+
+        <!-- What is MCP -->
+        <section id="what-is-mcp" class="mb-12">
+          <h2 class="text-3xl font-bold mb-4">🔌 What is MCP?</h2>
+          <p class="mb-4 text-lg">
+            <strong>MCP (Model Context Protocol)</strong> is an open standard
+            that enables AI models to securely interact with external data
+            sources and tools.
+          </p>
+          <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mb-4">
+            <h3 class="text-xl font-bold mb-3">The MCP Analogy</h3>
+            <p class="text-lg mb-2">Think of MCP like USB for AI:</p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li>
+                <strong>USB</strong> = Universal standard for connecting devices
+              </li>
+              <li>
+                <strong>MCP</strong> = Universal standard for connecting AI to
+                tools
+              </li>
+            </ul>
+            <p class="mt-3 text-gray-600 dark:text-gray-400">
+              Just like USB lets you plug any device into any computer, MCP lets
+              you connect any tool to any AI agent.
+            </p>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">Key MCP Concepts</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div
+              class="border border-gray-200 dark:border-gray-700 rounded-lg p-4"
+            >
+              <h4 class="font-bold text-lg mb-2">🛠️ MCP Server</h4>
+              <p class="text-sm">
+                Exposes tools and resources that agents can use (like a GitHub
+                API, database, or custom function)
+              </p>
+            </div>
+            <div
+              class="border border-gray-200 dark:border-gray-700 rounded-lg p-4"
+            >
+              <h4 class="font-bold text-lg mb-2">🤖 MCP Client</h4>
+              <p class="text-sm">
+                The AI agent that consumes MCP servers and invokes tools
+              </p>
+            </div>
+            <div
+              class="border border-gray-200 dark:border-gray-700 rounded-lg p-4"
+            >
+              <h4 class="font-bold text-lg mb-2">🔧 Tools</h4>
+              <p class="text-sm">
+                Specific functions exposed by an MCP server (e.g.,
+                "create_issue", "send_email")
+              </p>
+            </div>
+            <div
+              class="border border-gray-200 dark:border-gray-700 rounded-lg p-4"
+            >
+              <h4 class="font-bold text-lg mb-2">🌉 Gateway</h4>
+              <p class="text-sm">
+                Routes tool calls from agents to the correct MCP server
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Why MCP Matters -->
+        <section id="why-mcp" class="mb-12">
+          <h2 class="text-3xl font-bold mb-4">💎 Why MCP Matters</h2>
+          <p class="mb-4 text-lg">
+            Before MCP, every AI integration was custom-built. With MCP, you
+            get:
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-start">
+              <div
+                class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0"
+              >
+                1
+              </div>
+              <div>
+                <h3 class="font-bold text-lg">Reusability</h3>
+                <p>Build a tool once, use it with any MCP-compatible agent</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div
+                class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0"
+              >
+                2
+              </div>
+              <div>
+                <h3 class="font-bold text-lg">Composability</h3>
+                <p>Combine multiple tools to create powerful workflows</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div
+                class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0"
+              >
+                3
+              </div>
+              <div>
+                <h3 class="font-bold text-lg">Security</h3>
+                <p>Controlled, sandboxed execution of AI tool calls</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div
+                class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0"
+              >
+                4
+              </div>
+              <div>
+                <h3 class="font-bold text-lg">Standardization</h3>
+                <p>
+                  Industry-standard protocol means less reinventing the wheel
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="how-it-works" class="mb-12">
+          <h2 class="text-3xl font-bold mb-4">
+            ⚙️ How Agent Orchestration Works
+          </h2>
+          <p class="mb-6 text-lg">
+            Here's the flow when an AI agent uses a tool through Archestra:
+          </p>
+
+          <div class="diagram">
+            <div class="space-y-4">
+              <div class="flex items-center">
+                <div
+                  class="bg-purple-500 text-white px-4 py-2 rounded-lg font-bold w-32 text-center"
+                >
+                  1. Agent
+                </div>
+                <div
+                  class="flex-1 mx-4 border-t-2 border-purple-500 border-dashed"
+                ></div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">
+                  "I need to create a GitHub issue"
+                </div>
+              </div>
+              <div class="ml-8 text-2xl">↓</div>
+              <div class="flex items-center">
+                <div
+                  class="bg-blue-500 text-white px-4 py-2 rounded-lg font-bold w-32 text-center"
+                >
+                  2. Gateway
+                </div>
+                <div
+                  class="flex-1 mx-4 border-t-2 border-blue-500 border-dashed"
+                ></div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">
+                  Routes to GitHub MCP server
+                </div>
+              </div>
+              <div class="ml-8 text-2xl">↓</div>
+              <div class="flex items-center">
+                <div
+                  class="bg-green-500 text-white px-4 py-2 rounded-lg font-bold w-32 text-center"
+                >
+                  3. MCP Server
+                </div>
+                <div
+                  class="flex-1 mx-4 border-t-2 border-green-500 border-dashed"
+                ></div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">
+                  Calls GitHub API
+                </div>
+              </div>
+              <div class="ml-8 text-2xl">↓</div>
+              <div class="flex items-center">
+                <div
+                  class="bg-orange-500 text-white px-4 py-2 rounded-lg font-bold w-32 text-center"
+                >
+                  4. Tool
+                </div>
+                <div
+                  class="flex-1 mx-4 border-t-2 border-orange-500 border-dashed"
+                ></div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">
+                  Creates the issue
+                </div>
+              </div>
+              <div class="ml-8 text-2xl">↓</div>
+              <div class="flex items-center">
+                <div
+                  class="bg-gray-500 text-white px-4 py-2 rounded-lg font-bold w-32 text-center"
+                >
+                  5. Response
+                </div>
+                <div
+                  class="flex-1 mx-4 border-t-2 border-gray-500 border-dashed"
+                ></div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">
+                  Returns result to agent
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Installation -->
+        <section id="installation" class="mb-12">
+          <h2 class="text-3xl font-bold mb-4">📦 Installation</h2>
+          <p class="mb-4 text-lg">
+            Let's get Archestra installed on your machine.
+          </p>
+
+          <div class="alert alert-warning mb-4">
+            <strong>⚠️ Prerequisites:</strong> Make sure you have Node.js 18+
+            and npm installed.
+          </div>
+
+          <h3 class="text-2xl font-bold mb-3">Step 1: Install Archestra CLI</h3>
+          <div class="code-block relative mb-6">
+            <pre><code>npm install -g @archestra/cli</code></pre>
+          </div>
+
+          <h3 class="text-2xl font-bold mb-3">Step 2: Verify Installation</h3>
+          <div class="code-block relative mb-6">
+            <pre><code>archestra --version</code></pre>
+          </div>
+
+          <h3 class="text-2xl font-bold mb-3">
+            Step 3: Initialize a New Project
+          </h3>
+          <div class="code-block relative mb-6">
+            <pre><code>archestra init my-first-agent
+cd my-first-agent</code></pre>
+          </div>
+
+          <div class="alert alert-success">
+            <strong>✅ You're all set!</strong> Archestra is now installed and
+            ready to use.
+          </div>
+        </section>
+
+        <!-- First Steps -->
+        <section id="first-steps" class="mb-12">
+          <h2 class="text-3xl font-bold mb-4">🎯 Your First Steps</h2>
+          <p class="mb-6 text-lg">
+            Now that you have Archestra installed, here's what to do next:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <a
+              href="mcp-basics.html"
+              class="block bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg p-6 border-2 border-blue-300 dark:border-blue-700 hover:shadow-lg transition-all"
+            >
+              <h3 class="text-xl font-bold mb-2">📖 Learn MCP Basics</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Understand the MCP lifecycle and core concepts
+              </p>
+              <span class="text-blue-600 dark:text-blue-400 mt-2 inline-block"
+                >Start learning →</span
+              >
+            </a>
+
+            <a
+              href="tutorials.html"
+              class="block bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg p-6 border-2 border-green-300 dark:border-green-700 hover:shadow-lg transition-all"
+            >
+              <h3 class="text-xl font-bold mb-2">🧪 Build Your First Tool</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Follow step-by-step tutorials to create MCP tools
+              </p>
+              <span class="text-green-600 dark:text-green-400 mt-2 inline-block"
+                >Start building →</span
+              >
+            </a>
+
+            <a
+              href="templates.html"
+              class="block bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg p-6 border-2 border-purple-300 dark:border-purple-700 hover:shadow-lg transition-all"
+            >
+              <h3 class="text-xl font-bold mb-2">🧰 Browse Templates</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Copy ready-made templates for common use cases
+              </p>
+              <span
+                class="text-purple-600 dark:text-purple-400 mt-2 inline-block"
+                >View templates →</span
+              >
+            </a>
+
+            <a
+              href="troubleshooting.html"
+              class="block bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg p-6 border-2 border-orange-300 dark:border-orange-700 hover:shadow-lg transition-all"
+            >
+              <h3 class="text-xl font-bold mb-2">🐛 Troubleshooting Guide</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Debug common issues before they slow you down
+              </p>
+              <span
+                class="text-orange-600 dark:text-orange-400 mt-2 inline-block"
+                >Browse issues →</span
+              >
+            </a>
+          </div>
+        </section>
+
+        <!-- Next Steps -->
+        <div
+          class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-8 text-white text-center"
+        >
+          <h2 class="text-3xl font-bold mb-4">Ready to Dive Deeper? 🚀</h2>
+          <p class="text-xl mb-6">
+            Continue your learning journey with our comprehensive MCP basics
+            guide
+          </p>
+          <a
+            href="mcp-basics.html"
+            class="inline-block px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105"
+          >
+            Learn MCP Basics →
+          </a>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/code-copy.js"></script>
+  </body>
+</html>

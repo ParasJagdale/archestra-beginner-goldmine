@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutorials - Archestra Beginner Goldmine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/main.css" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: { colors: { primary: "#3b82f6", secondary: "#8b5cf6" } },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 z-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a
+              href="index.html"
+              class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
+            >
+              ⚡ Archestra Goldmine
+            </a>
+          </div>
+          <div class="flex items-center gap-4">
+            <button
+              id="theme-toggle"
+              class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              <svg
+                class="w-6 h-6 hidden dark:block"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                ></path>
+              </svg>
+              <svg
+                class="w-6 h-6 block dark:hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex pt-16">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <nav class="space-y-6">
+          <div>
+            <a
+              href="index.html"
+              class="block text-gray-600 dark:text-gray-400 hover:text-blue-600 mb-2"
+              >← Back to Home</a
+            >
+          </div>
+          <div>
+            <h3 class="font-bold mb-2">Tutorials</h3>
+            <ul class="space-y-1 text-sm">
+              <li>
+                <a
+                  href="#tutorial-1"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >1. First MCP Tool</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#tutorial-2"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >2. Connect to Gateway</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#tutorial-3"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >3. Attach to Agent</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#tutorial-4"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >4. Debug Tool Failures</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content flex-1 max-w-4xl">
+        <div class="mb-8">
+          <h1 class="text-5xl font-bold mb-4">🧪 Step-by-Step Tutorials</h1>
+          <p class="text-xl text-gray-600 dark:text-gray-400">
+            Hands-on tutorials to build your first MCP tools and agents. Follow
+            along and create working examples.
+          </p>
+        </div>
+
+        <!-- Tutorial 1: Build First MCP Tool -->
+        <section id="tutorial-1" class="mb-16">
+          <div
+            class="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg p-6 mb-6"
+          >
+            <h2 class="text-3xl font-bold mb-2">
+              Tutorial 1: Build Your First MCP Tool
+            </h2>
+            <p class="text-lg opacity-90">
+              ⏱️ Time: 15 minutes • 🎯 Level: Beginner
+            </p>
+          </div>
+
+          <div class="alert alert-info mb-6">
+            <strong>💡 What You'll Build:</strong> A simple "calculator" tool
+            that can perform basic math operations and be called by an AI agent.
+          </div>
+
+          <h3 class="text-2xl font-bold mb-4">
+            Step 1: Create Project Structure
+          </h3>
+          <p class="mb-4">
+            First, create a new directory and initialize a Node.js project:
+          </p>
+          <div class="code-block relative mb-6">
+            <pre><code>mkdir my-first-mcp-tool
+cd my-first-mcp-tool
+npm init -y
+npm install @modelcontextprotocol/sdk</code></pre>
+          </div>
+
+          <h3 class="text-2xl font-bold mb-4">Step 2: Create the MCP Server</h3>
+          <p class="mb-4">Create a file called <code>server.js</code>:</p>
+          <div class="code-block relative mb-6">
+            <pre><code>import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { 
+  ListToolsRequestSchema,
+  CallToolRequestSchema 
+} from "@modelcontextprotocol/sdk/types.js";
+
+// Create the MCP server
+const server = new Server({
+  name: "calculator-server",
+  version: "1.0.0"
+}, {
+  capabilities: {
+    tools: {}
+  }
+});
+
+// Handle tools/list request
+server.setRequestHandler(ListToolsRequestSchema, async () => {
+  return {
+    tools: [
+      {
+        name: "calculate",
+        description: "Perform basic math operations",
+        inputSchema: {
+          type: "object",
+          properties: {
+            operation: {
+              type: "string",
+              enum: ["add", "subtract", "multiply", "divide"],
+              description: "The math operation to perform"
+            },
+            a: {
+              type: "number",
+              description: "First number"
+            },
+            b: {
+              type: "number",
+              description: "Second number"
+            }
+          },
+          required: ["operation", "a", "b"]
+        }
+      }
+    ]
+  };
+});
+
+// Handle tools/call request
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const { name, arguments: args } = request.params;
+
+  if (name === "calculate") {
+    const { operation, a, b } = args;
+    let result;
+
+    switch (operation) {
+      case "add":
+        result = a + b;
+        break;
+      case "subtract":
+        result = a - b;
+        break;
+      case "multiply":
+        result = a * b;
+        break;
+      case "divide":
+        if (b === 0) {
+          throw new Error("Cannot divide by zero");
+        }
+        result = a / b;
+        break;
+      default:
+        throw new Error(`Unknown operation: ${operation}`);
+    }
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: `Result: ${result}`
+        }
+      ]
+    };
+  }
+
+  throw new Error(`Unknown tool: ${name}`);
+});
+
+// Start the server
+const transport = new StdioServerTransport();
+await server.connect(transport);
+console.error("Calculator MCP server running");
+</code></pre>
+          </div>
+
+          <h3 class="text-2xl font-bold mb-4">Step 3: Update package.json</h3>
+          <p class="mb-4">
+            Add the ES module type to your <code>package.json</code>:
+          </p>
+          <div class="code-block relative mb-6">
+            <pre><code>{
+  "name": "my-first-mcp-tool",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0"
+  }
+}</code></pre>
+          </div>
+
+          <h3 class="text-2xl font-bold mb-4">Step 4: Test Your Tool</h3>
+          <p class="mb-4">Run the server and test it:</p>
+          <div class="code-block relative mb-6">
+            <pre><code>npm start</code></pre>
+          </div>
+
+          <div class="alert alert-success">
+            <strong>✅ Success!</strong> You've created your first MCP tool! The
+            calculator server is now ready to be used by an AI agent.
+          </div>
+        </section>
+
+        <!-- Tutorial 2: Connect MCP Server to Gateway -->
+        <section id="tutorial-2" class="mb-16">
+          <div
+            class="bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-lg p-6 mb-6"
+          >
+            <h2 class="text-3xl font-bold mb-2">
+              Tutorial 2: Connect MCP Server to Gateway
+            </h2>
+            <p class="text-lg opacity-90">
+              ⏱️ Time: 10 minutes • 🎯 Level: Beginner
+            </p>
+          </div>
+
+          <div class="alert alert-info mb-6">
+            <strong>💡 What You'll Learn:</strong> How to register your MCP
+            server with the Archestra gateway so agents can discover and use it.
+          </div>
+
+          <h3 class="text-2xl font-bold mb-4">
+            Step 1: Create HTTP Server Wrapper
+          </h3>
+          <p class="mb-4">Update your server to expose HTTP endpoints:</p>
+          <div class="code-block relative mb-6">
+            <pre><code>import express from "express";
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
+
+const app = express();
+const PORT = 3000;
+
+// Create MCP server (same as before)
+const mcpServer = new Server({
+  name: "calculator-server",
+  version: "1.0.0"
+}, {
+  capabilities: { tools: {} }
+});
+
+// ... (add tool handlers here)
+
+// SSE endpoint for MCP
+app.get("/mcp/sse", async (req, res) => {
+  const transport = new SSEServerTransport("/mcp/message", res);
+  await mcpServer.connect(transport);
+});
+
+app.post("/mcp/message", async (req, res) => {
+  // Handle incoming messages
+});
+
+app.listen(PORT, () => {
+  console.log(`MCP server running on http://localhost:${PORT}`);
+});</code></pre>
+          </div>
+
+          <h3 class="text-2xl font-bold mb-4">Step 2: Configure Gateway</h3>
+          <p class="mb-4">Create a <code>gateway.config.json</code> file:</p>
+          <div class="code-block relative mb-6">
+            <pre><code>{
+  "gateway": {
+    "port": 8080,
+    "host": "localhost"
+  },
+  "mcpServers": [
+    {
+      "name": "calculator",
+      "url": "http://localhost:3000/mcp",
+      "enabled": true,
+      "description": "Basic calculator tool"
+    }
+  ]
+}</code></pre>
+          </div>
+
+          <h3 class="text-2xl font-bold mb-4">Step 3: Start Gateway</h3>
+          <div class="code-block relative mb-6">
+            <pre><code>archestra gateway start --config gateway.config.json</code></pre>
+          </div>
+
+          <h3 class="text-2xl font-bold mb-4">Step 4: Verify Connection</h3>
+          <p class="mb-4">Test that the gateway can reach your MCP server:</p>
+          <div class="code-block relative mb-6">
+            <pre><code>curl http://localhost:8080/tools/list</code></pre>
+          </div>
+
+          <div class="alert alert-success">
+            <strong>✅ Connected!</strong> Your MCP server is now accessible
+            through the gateway.
+          </div>
+        </section>
+
+        <!-- Tutorial 3: Attach Tool to Agent -->
+        <section id="tutorial-3" class="mb-16">
+          <div
+            class="bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-lg p-6 mb-6"
+          >
+            <h2 class="text-3xl font-bold mb-2">
+              Tutorial 3: Attach Tool to AI Agent
+            </h2>
+            <p class="text-lg opacity-90">
+              ⏱️ Time: 15 minutes • 🎯 Level: Intermediate
+            </p>
+          </div>
+
+          <div class="alert alert-info mb-6">
+            <strong>💡 What You'll Learn:</strong> How to create an AI agent
+            that can discover and use your calculator tool.
+          </div>
+
+          <h3 class="text-2xl font-bold mb-4">
+            Step 1: Create Agent Configuration
+          </h3>
+          <p class="mb-4">Create <code>agent.config.json</code>:</p>
+          <div class="code-block relative mb-6">
+            <pre><code>{
+  "agent": {
+    "name": "math-assistant",
+    "model": "gpt-4",
+    "systemPrompt": "You are a helpful math assistant. Use the calculator tool when users ask math questions."
+  },
+  "gateway": {
+    "url": "http://localhost:8080"
+  },
+  "tools": {
+    "auto-discover": true,
+    "allowed": ["calculate"]
+  }
+}</code></pre>
+          </div>
+
+          <h3 class="text-2xl font-bold mb-4">Step 2: Create Agent Script</h3>
+          <p class="mb-4">Create <code>agent.js</code>:</p>
+          <div class="code-block relative mb-6">
+            <pre><code>import { Agent } from "@archestra/sdk";
+
+const agent = new Agent({
+  name: "math-assistant",
+  gatewayUrl: "http://localhost:8080",
+  model: "gpt-4"
+});
+
+// Initialize and connect to gateway
+await agent.connect();
+
+// Chat with the agent
+const response = await agent.chat("What is 567 multiplied by 89?");
+console.log(response);
+
+// The agent will automatically:
+// 1. Discover the calculator tool from the gateway
+// 2. Decide to use it for math
+// 3. Call calculate with operation=multiply, a=567, b=89
+// 4. Return the result to the user</code></pre>
+          </div>
+
+          <h3 class="text-2xl font-bold mb-4">Step 3: Run the Agent</h3>
+          <div class="code-block relative mb-6">
+            <pre><code>node agent.js</code></pre>
+          </div>
+
+          <div class="alert alert-success">
+            <strong>✅ Working!</strong> Your agent can now use your calculator
+            tool automatically!
+          </div>
+        </section>
+
+        <!-- Tutorial 4: Debug Tool Invocation Failures -->
+        <section id="tutorial-4" class="mb-16">
+          <div
+            class="bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-lg p-6 mb-6"
+          >
+            <h2 class="text-3xl font-bold mb-2">
+              Tutorial 4: Debug Tool Invocation Failures
+            </h2>
+            <p class="text-lg opacity-90">
+              ⏱️ Time: 20 minutes • 🎯 Level: Intermediate
+            </p>
+          </div>
+
+          <div class="alert alert-info mb-6">
+            <strong>💡 What You'll Learn:</strong> How to debug common issues
+            when tools don't work as expected.
+          </div>
+
+          <h3 class="text-2xl font-bold mb-4">Step 1: Enable Debug Logging</h3>
+          <p class="mb-4">Add logging to your MCP server:</p>
+          <div class="code-block relative mb-6">
+            <pre><code>// Add this to your server.js
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  console.error(`[DEBUG] Tool called: ${request.params.name}`);
+  console.error(`[DEBUG] Arguments:`, JSON.stringify(request.params.arguments, null, 2));
+
+  try {
+    // Your tool logic here
+    const result = executeTool(request.params);
+    console.error(`[DEBUG] Success:`, result);
+    return result;
+  } catch (error) {
+    console.error(`[DEBUG] Error:`, error.message);
+    throw error;
+  }
+});</code></pre>
+          </div>
+
+          <h3 class="text-2xl font-bold mb-4">
+            Step 2: Check Tool Schema Validation
+          </h3>
+          <p class="mb-4">Ensure your tool arguments match the schema:</p>
+          <div class="code-block relative mb-6">
+            <pre><code>// Bad: Missing required field
+{
+  "operation": "add",
+  "a": 5
+  // Missing "b" - will fail!
+}
+
+// Good: All required fields present
+{
+  "operation": "add",
+  "a": 5,
+  "b": 3
+}</code></pre>
+          </div>
+
+          <h3 class="text-2xl font-bold mb-4">Step 3: Test Tool Directly</h3>
+          <p class="mb-4">Use curl to test your tool without the agent:</p>
+          <div class="code-block relative mb-6">
+            <pre><code>curl -X POST http://localhost:3000/mcp/message \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "tools/call",
+    "params": {
+      "name": "calculate",
+      "arguments": {
+        "operation": "add",
+        "a": 5,
+        "b": 3
+      }
+    },
+    "id": 1
+  }'</code></pre>
+          </div>
+
+          <h3 class="text-2xl font-bold mb-4">Step 4: Monitor Gateway Logs</h3>
+          <p class="mb-4">Check gateway logs for routing issues:</p>
+          <div class="code-block relative mb-6">
+            <pre><code>archestra gateway logs --follow</code></pre>
+          </div>
+
+          <div class="alert alert-warning mb-4">
+            <strong>⚠️ Common Issues:</strong>
+            <ul class="list-disc list-inside mt-2 ml-4">
+              <li>Tool not registered in tools/list</li>
+              <li>Schema validation failures</li>
+              <li>Gateway can't reach MCP server</li>
+              <li>Incorrect tool name in agent call</li>
+            </ul>
+          </div>
+
+          <div class="alert alert-success">
+            <strong>✅ Debug Complete!</strong> You now know how to troubleshoot
+            tool invocation issues systematically.
+          </div>
+        </section>
+
+        <!-- Next Steps -->
+        <div
+          class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg p-8 text-white text-center"
+        >
+          <h2 class="text-3xl font-bold mb-4">🎉 Congratulations!</h2>
+          <p class="text-xl mb-6">
+            You've completed all beginner tutorials. Ready for more?
+          </p>
+          <div class="flex justify-center gap-4 flex-wrap">
+            <a
+              href="templates.html"
+              class="inline-block px-6 py-3 bg-white text-indigo-600 rounded-lg font-semibold hover:bg-gray-100"
+            >
+              Browse Templates
+            </a>
+            <a
+              href="architecture.html"
+              class="inline-block px-6 py-3 bg-transparent border-2 border-white rounded-lg font-semibold hover:bg-white hover:text-indigo-600"
+            >
+              Advanced Architecture
+            </a>
+            <a
+              href="best-practices.html"
+              class="inline-block px-6 py-3 bg-transparent border-2 border-white rounded-lg font-semibold hover:bg-white hover:text-indigo-600"
+            >
+              Best Practices
+            </a>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/code-copy.js"></script>
+  </body>
+</html>

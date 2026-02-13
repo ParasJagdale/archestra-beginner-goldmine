@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Troubleshooting - Archestra Beginner Goldmine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/main.css" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: { colors: { primary: "#3b82f6", secondary: "#8b5cf6" } },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 z-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a
+              href="index.html"
+              class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
+            >
+              ⚡ Archestra Goldmine
+            </a>
+          </div>
+          <div class="flex items-center gap-4">
+            <button
+              id="theme-toggle"
+              class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              <svg
+                class="w-6 h-6 hidden dark:block"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                ></path>
+              </svg>
+              <svg
+                class="w-6 h-6 block dark:hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex pt-16">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <nav class="space-y-6">
+          <div>
+            <a
+              href="index.html"
+              class="block text-gray-600 dark:text-gray-400 hover:text-blue-600 mb-2"
+              >← Back to Home</a
+            >
+          </div>
+          <div>
+            <h3 class="font-bold mb-2">Common Issues</h3>
+            <ul class="space-y-1 text-sm">
+              <li>
+                <a
+                  href="#unsupported-method"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Unsupported MCP Method</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#streaming-transport"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Streaming Transport Error</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#tool-not-appearing"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Tool Not Appearing</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#gateway-vs-registry"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Gateway vs Registry</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#json-rpc"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >JSON-RPC Issues</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#endpoint-errors"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >/mcp Endpoint Errors</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#accept-header"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Accept Header Issues</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#sdk-vs-manual"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >SDK vs Manual MCP</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content flex-1 max-w-4xl">
+        <div class="mb-8">
+          <h1 class="text-5xl font-bold mb-4">🐛 Troubleshooting Guide</h1>
+          <p class="text-xl text-gray-600 dark:text-gray-400">
+            Searchable solutions to the most common Archestra and MCP errors.
+            Find your issue, understand the cause, and fix it fast.
+          </p>
+        </div>
+
+        <!-- Search box -->
+        <div class="mb-8">
+          <input
+            type="text"
+            id="issue-search"
+            placeholder="Search for your error..."
+            class="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+          />
+        </div>
+
+        <!-- Issue 1: Unsupported MCP Method -->
+        <section id="unsupported-method" class="mb-12 issue-card">
+          <div
+            class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 rounded-lg p-6"
+          >
+            <h2 class="text-2xl font-bold mb-2 text-red-700 dark:text-red-400">
+              ❌ Unsupported MCP Method Error
+            </h2>
+            <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              Issue #1 • Category: MCP Protocol
+            </div>
+
+            <h3 class="font-bold text-lg mb-2">🔴 Problem</h3>
+            <div class="code-block relative mb-4">
+              <pre><code>Error: Unsupported method: tools/list
+MCP server does not implement required method</code></pre>
+            </div>
+
+            <h3 class="font-bold text-lg mb-2">💡 Cause</h3>
+            <p class="mb-4">
+              Your MCP server doesn't implement the
+              <code>tools/list</code> method, which is required for the agent to
+              discover available tools.
+            </p>
+
+            <h3 class="font-bold text-lg mb-2">✅ Solution</h3>
+            <p class="mb-3">
+              Implement the <code>tools/list</code> handler in your MCP server:
+            </p>
+            <div class="code-block relative mb-4">
+              <pre><code>server.setRequestHandler(ListToolsRequestSchema, async () => {
+  return {
+    tools: [
+      {
+        name: "your_tool_name",
+        description: "What your tool does",
+        inputSchema: {
+          type: "object",
+          properties: {
+            // Your tool parameters
+          },
+          required: []
+        }
+      }
+    ]
+  };
+});</code></pre>
+            </div>
+
+            <div class="alert alert-info">
+              <strong>💡 Quick Tip:</strong> Every MCP server must implement
+              <code>initialize</code>, <code>tools/list</code>, and
+              <code>tools/call</code> at minimum.
+            </div>
+          </div>
+        </section>
+
+        <!-- Issue 2: Streaming Transport -->
+        <section id="streaming-transport" class="mb-12 issue-card">
+          <div
+            class="bg-orange-50 dark:bg-orange-900/20 border-l-4 border-orange-500 rounded-lg p-6"
+          >
+            <h2
+              class="text-2xl font-bold mb-2 text-orange-700 dark:text-orange-400"
+            >
+              ⚠️ Streaming Transport Error
+            </h2>
+            <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              Issue #2 • Category: Connection
+            </div>
+
+            <h3 class="font-bold text-lg mb-2">🔴 Problem</h3>
+            <div class="code-block relative mb-4">
+              <pre><code>Error: Transport closed unexpectedly
+Streaming transport disconnected during tool call</code></pre>
+            </div>
+
+            <h3 class="font-bold text-lg mb-2">💡 Cause</h3>
+            <p class="mb-4">
+              The MCP server's streaming transport (SSE or WebSocket) closed
+              before completing the request. Common causes:
+            </p>
+            <ul class="list-disc list-inside mb-4 ml-4">
+              <li>Server crashed or timed out</li>
+              <li>Long-running operation exceeded timeout</li>
+              <li>Network interruption</li>
+              <li>Missing keep-alive headers</li>
+            </ul>
+
+            <h3 class="font-bold text-lg mb-2">✅ Solution</h3>
+            <p class="mb-3">Option 1: Increase timeout for long operations</p>
+            <div class="code-block relative mb-4">
+              <pre><code>// In your MCP server configuration
+{
+  transport: {
+    type: "sse",
+    timeout: 60000  // 60 seconds
+  }
+}</code></pre>
+            </div>
+
+            <p class="mb-3">Option 2: Add keep-alive mechanism</p>
+            <div class="code-block relative mb-4">
+              <pre><code>// Send periodic pings
+setInterval(() => {
+  transport.send({ type: "ping" });
+}, 10000);</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Issue 3: Tool Not Appearing -->
+        <section id="tool-not-appearing" class="mb-12 issue-card">
+          <div
+            class="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 rounded-lg p-6"
+          >
+            <h2
+              class="text-2xl font-bold mb-2 text-yellow-700 dark:text-yellow-400"
+            >
+              🔍 Tool Not Appearing in Agent
+            </h2>
+            <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              Issue #3 • Category: Configuration
+            </div>
+
+            <h3 class="font-bold text-lg mb-2">🔴 Problem</h3>
+            <p class="mb-4">
+              You created a tool in your MCP server, but the agent can't see or
+              use it.
+            </p>
+
+            <h3 class="font-bold text-lg mb-2">💡 Cause</h3>
+            <p class="mb-4">Multiple possible causes:</p>
+            <ol class="list-decimal list-inside mb-4 ml-4 space-y-2">
+              <li>MCP server not registered with the gateway</li>
+              <li>Tool not returned in <code>tools/list</code> response</li>
+              <li>Invalid tool schema</li>
+              <li>Agent not configured to use the MCP server</li>
+            </ol>
+
+            <h3 class="font-bold text-lg mb-2">✅ Solution</h3>
+            <p class="mb-3">
+              <strong>Step 1:</strong> Verify tool is in <code>tools/list</code>
+            </p>
+            <div class="code-block relative mb-4">
+              <pre><code>curl http://localhost:3000/mcp/tools/list</code></pre>
+            </div>
+
+            <p class="mb-3">
+              <strong>Step 2:</strong> Check gateway configuration
+            </p>
+            <div class="code-block relative mb-4">
+              <pre><code>// gateway.config.json
+{
+  "mcpServers": [
+    {
+      "name": "my-server",
+      "url": "http://localhost:3000/mcp",
+      "enabled": true  // Make sure this is true
+    }
+  ]
+}</code></pre>
+            </div>
+
+            <p class="mb-3">
+              <strong>Step 3:</strong> Restart gateway and agent
+            </p>
+            <div class="code-block relative mb-4">
+              <pre><code>archestra gateway restart
+archestra agent restart</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Issue 4: Gateway vs Registry -->
+        <section id="gateway-vs-registry" class="mb-12 issue-card">
+          <div
+            class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 rounded-lg p-6"
+          >
+            <h2
+              class="text-2xl font-bold mb-2 text-blue-700 dark:text-blue-400"
+            >
+              🤔 Gateway vs Registry Confusion
+            </h2>
+            <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              Issue #4 • Category: Architecture
+            </div>
+
+            <h3 class="font-bold text-lg mb-2">🔴 Problem</h3>
+            <p class="mb-4">
+              "Should I connect my MCP server to the gateway or the registry?"
+            </p>
+
+            <h3 class="font-bold text-lg mb-2">💡 Explanation</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div
+                class="border border-blue-300 dark:border-blue-700 rounded-lg p-4"
+              >
+                <h4 class="font-bold mb-2">🌉 Gateway</h4>
+                <p class="text-sm mb-2">
+                  <strong>Purpose:</strong> Routes tool calls from agents to MCP
+                  servers
+                </p>
+                <p class="text-sm mb-2">
+                  <strong>When to use:</strong> Production deployments, multiple
+                  agents
+                </p>
+                <p class="text-sm">
+                  <strong>URL format:</strong> <code>http://gateway:8080</code>
+                </p>
+              </div>
+              <div
+                class="border border-green-300 dark:border-green-700 rounded-lg p-4 bg-green-50 dark:bg-green-900/20"
+              >
+                <h4 class="font-bold mb-2">📚 Registry</h4>
+                <p class="text-sm mb-2">
+                  <strong>Purpose:</strong> Discovers and lists available MCP
+                  servers
+                </p>
+                <p class="text-sm mb-2">
+                  <strong>When to use:</strong> Development, testing, server
+                  discovery
+                </p>
+                <p class="text-sm">
+                  <strong>URL format:</strong> <code>http://registry:9090</code>
+                </p>
+              </div>
+            </div>
+
+            <h3 class="font-bold text-lg mb-2">✅ Solution</h3>
+            <div class="alert alert-success">
+              <strong>✅ Simple Rule:</strong> In development, connect your
+              agent directly to MCP servers. In production, use the Gateway to
+              route traffic.
+            </div>
+          </div>
+        </section>
+
+        <!-- Issue 5: JSON-RPC Issues -->
+        <section id="json-rpc" class="mb-12 issue-card">
+          <div
+            class="bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-500 rounded-lg p-6"
+          >
+            <h2
+              class="text-2xl font-bold mb-2 text-purple-700 dark:text-purple-400"
+            >
+              📡 JSON-RPC Format Errors
+            </h2>
+            <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              Issue #5 • Category: Protocol
+            </div>
+
+            <h3 class="font-bold text-lg mb-2">🔴 Problem</h3>
+            <div class="code-block relative mb-4">
+              <pre><code>Error: Invalid JSON-RPC request
+Missing 'jsonrpc' field or invalid format</code></pre>
+            </div>
+
+            <h3 class="font-bold text-lg mb-2">💡 Cause</h3>
+            <p class="mb-4">
+              MCP uses JSON-RPC 2.0 format. Your request is missing required
+              fields or has incorrect structure.
+            </p>
+
+            <h3 class="font-bold text-lg mb-2">✅ Solution</h3>
+            <p class="mb-3">Use the correct JSON-RPC format:</p>
+            <div class="code-block relative mb-4">
+              <pre><code>{
+  "jsonrpc": "2.0",
+  "method": "tools/call",
+  "params": {
+    "name": "tool_name",
+    "arguments": {
+      "param1": "value1"
+    }
+  },
+  "id": 1
+}</code></pre>
+            </div>
+
+            <div class="alert alert-warning">
+              <strong>⚠️ Common Mistake:</strong> Forgetting the
+              <code>"jsonrpc": "2.0"</code> field or using wrong
+              <code>id</code> type (must be string or number).
+            </div>
+          </div>
+        </section>
+
+        <!-- Issue 6: /mcp Endpoint -->
+        <section id="endpoint-errors" class="mb-12 issue-card">
+          <div
+            class="bg-pink-50 dark:bg-pink-900/20 border-l-4 border-pink-500 rounded-lg p-6"
+          >
+            <h2
+              class="text-2xl font-bold mb-2 text-pink-700 dark:text-pink-400"
+            >
+              🔗 /mcp Endpoint 404 Error
+            </h2>
+            <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              Issue #6 • Category: Routing
+            </div>
+
+            <h3 class="font-bold text-lg mb-2">🔴 Problem</h3>
+            <div class="code-block relative mb-4">
+              <pre><code>Error: 404 Not Found
+GET http://localhost:3000/mcp</code></pre>
+            </div>
+
+            <h3 class="font-bold text-lg mb-2">💡 Cause</h3>
+            <p class="mb-4">
+              Your MCP server doesn't expose the <code>/mcp</code> endpoint, or
+              it's on a different path.
+            </p>
+
+            <h3 class="font-bold text-lg mb-2">✅ Solution</h3>
+            <p class="mb-3">
+              Ensure your server has the MCP endpoint properly configured:
+            </p>
+            <div class="code-block relative mb-4">
+              <pre><code>// Express example
+app.use('/mcp', mcpRouter);
+
+// Or with SSE transport
+const transport = new SSEServerTransport('/mcp', res);
+server.connect(transport);</code></pre>
+            </div>
+
+            <p class="mb-3">Test the endpoint:</p>
+            <div class="code-block relative mb-4">
+              <pre><code>curl http://localhost:3000/mcp/sse
+# Should return a streaming connection</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Issue 7: Accept Header -->
+        <section id="accept-header" class="mb-12 issue-card">
+          <div
+            class="bg-indigo-50 dark:bg-indigo-900/20 border-l-4 border-indigo-500 rounded-lg p-6"
+          >
+            <h2
+              class="text-2xl font-bold mb-2 text-indigo-700 dark:text-indigo-400"
+            >
+              📨 Accept Header Issues
+            </h2>
+            <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              Issue #7 • Category: HTTP
+            </div>
+
+            <h3 class="font-bold text-lg mb-2">🔴 Problem</h3>
+            <div class="code-block relative mb-4">
+              <pre><code>Error: 406 Not Acceptable
+Server requires 'Accept: text/event-stream' header</code></pre>
+            </div>
+
+            <h3 class="font-bold text-lg mb-2">💡 Cause</h3>
+            <p class="mb-4">
+              SSE-based MCP servers require the correct Accept header for
+              streaming responses.
+            </p>
+
+            <h3 class="font-bold text-lg mb-2">✅ Solution</h3>
+            <p class="mb-3">Include the correct headers when connecting:</p>
+            <div class="code-block relative mb-4">
+              <pre><code>const client = new Client({
+  name: "my-agent",
+  version: "1.0.0"
+}, {
+  capabilities: {}
+});
+
+const transport = new SSEClientTransport(
+  new URL("http://localhost:3000/mcp/sse"),
+  {
+    headers: {
+      'Accept': 'text/event-stream'
+    }
+  }
+);
+
+await client.connect(transport);</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Issue 8: SDK vs Manual -->
+        <section id="sdk-vs-manual" class="mb-12 issue-card">
+          <div
+            class="bg-teal-50 dark:bg-teal-900/20 border-l-4 border-teal-500 rounded-lg p-6"
+          >
+            <h2
+              class="text-2xl font-bold mb-2 text-teal-700 dark:text-teal-400"
+            >
+              🛠️ SDK vs Manual MCP Implementation
+            </h2>
+            <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              Issue #8 • Category: Development
+            </div>
+
+            <h3 class="font-bold text-lg mb-2">🔴 Problem</h3>
+            <p class="mb-4">
+              "Should I use the MCP SDK or implement the protocol manually?"
+            </p>
+
+            <h3 class="font-bold text-lg mb-2">💡 Recommendation</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div
+                class="border border-green-300 dark:border-green-700 rounded-lg p-4 bg-green-50 dark:bg-green-900/20"
+              >
+                <h4 class="font-bold mb-2 text-green-700 dark:text-green-400">
+                  ✅ Use the SDK (Recommended)
+                </h4>
+                <ul class="text-sm space-y-1 list-disc list-inside">
+                  <li>Handles JSON-RPC automatically</li>
+                  <li>Type-safe with TypeScript</li>
+                  <li>Built-in error handling</li>
+                  <li>Transport abstraction</li>
+                  <li>Well-tested and maintained</li>
+                </ul>
+              </div>
+              <div
+                class="border border-orange-300 dark:border-orange-700 rounded-lg p-4"
+              >
+                <h4 class="font-bold mb-2 text-orange-700 dark:text-orange-400">
+                  ⚠️ Manual Implementation
+                </h4>
+                <ul class="text-sm space-y-1 list-disc list-inside">
+                  <li>More control over behavior</li>
+                  <li>Smaller bundle size</li>
+                  <li>Language flexibility</li>
+                  <li>Learning opportunity</li>
+                  <li>More debugging needed</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="font-bold text-lg mb-2">✅ Solution</h3>
+            <p class="mb-3">For beginners, start with the SDK:</p>
+            <div class="code-block relative mb-4">
+              <pre><code>npm install @modelcontextprotocol/sdk
+
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+
+const server = new Server({
+  name: "my-mcp-server",
+  version: "1.0.0"
+}, {
+  capabilities: {
+    tools: {}
+  }
+});</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quick Reference -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">📋 Quick Debug Checklist</h2>
+          <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+            <div class="space-y-3">
+              <label class="flex items-start">
+                <input type="checkbox" class="mt-1 mr-3" />
+                <span>MCP server is running and accessible</span>
+              </label>
+              <label class="flex items-start">
+                <input type="checkbox" class="mt-1 mr-3" />
+                <span
+                  >Gateway is configured and pointing to correct server
+                  URL</span
+                >
+              </label>
+              <label class="flex items-start">
+                <input type="checkbox" class="mt-1 mr-3" />
+                <span
+                  ><code>tools/list</code> returns your tools correctly</span
+                >
+              </label>
+              <label class="flex items-start">
+                <input type="checkbox" class="mt-1 mr-3" />
+                <span>Tool schemas are valid JSON schema</span>
+              </label>
+              <label class="flex items-start">
+                <input type="checkbox" class="mt-1 mr-3" />
+                <span
+                  >Transport headers are correct (Accept, Content-Type)</span
+                >
+              </label>
+              <label class="flex items-start">
+                <input type="checkbox" class="mt-1 mr-3" />
+                <span>Agent has permissions to call the tool</span>
+              </label>
+              <label class="flex items-start">
+                <input type="checkbox" class="mt-1 mr-3" />
+                <span>Checked server logs for detailed error messages</span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <!-- Still Stuck? -->
+        <div
+          class="bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg p-8 text-white text-center"
+        >
+          <h2 class="text-3xl font-bold mb-4">Still Stuck? 🆘</h2>
+          <p class="text-xl mb-6">
+            Join our community or check the official docs
+          </p>
+          <div class="flex justify-center gap-4">
+            <a
+              href="https://github.com/archestra/archestra"
+              target="_blank"
+              class="inline-block px-6 py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-gray-100"
+            >
+              GitHub Issues
+            </a>
+            <a
+              href="architecture.html"
+              class="inline-block px-6 py-3 bg-transparent border-2 border-white rounded-lg font-semibold hover:bg-white hover:text-purple-600"
+            >
+              Architecture Docs
+            </a>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/code-copy.js"></script>
+    <script>
+      // Simple search functionality for issues
+      document
+        .getElementById("issue-search")
+        .addEventListener("input", function (e) {
+          const query = e.target.value.toLowerCase();
+          const issues = document.querySelectorAll(".issue-card");
+
+          issues.forEach((issue) => {
+            const text = issue.textContent.toLowerCase();
+            if (text.includes(query) || query === "") {
+              issue.style.display = "block";
+            } else {
+              issue.style.display = "none";
+            }
+          });
+        });
+    </script>
+  </body>
+</html>

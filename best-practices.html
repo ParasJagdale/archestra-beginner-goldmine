@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Best Practices & Project Ideas - Archestra Beginner Goldmine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/main.css" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: { colors: { primary: "#3b82f6", secondary: "#8b5cf6" } },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 z-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a
+              href="index.html"
+              class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
+            >
+              ⚡ Archestra Goldmine
+            </a>
+          </div>
+          <div class="flex items-center gap-4">
+            <button
+              id="theme-toggle"
+              class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              <svg
+                class="w-6 h-6 hidden dark:block"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                ></path>
+              </svg>
+              <svg
+                class="w-6 h-6 block dark:hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex pt-16">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <nav class="space-y-6">
+          <div>
+            <a
+              href="index.html"
+              class="block text-gray-600 dark:text-gray-400 hover:text-blue-600 mb-2"
+              >← Back to Home</a
+            >
+          </div>
+          <div>
+            <h3 class="font-bold mb-2">Guide Sections</h3>
+            <ul class="space-y-1 text-sm">
+              <li>
+                <a
+                  href="#development-strategy"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Development Strategy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#project-ideas"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Project Ideas</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#common-pitfalls"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Common Pitfalls</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#demo-tips"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Demo Preparation</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#architecture-storytelling"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Architecture Communication</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#production-checklist"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Production Checklist</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content flex-1 max-w-4xl">
+        <div class="mb-8">
+          <h1 class="text-5xl font-bold mb-4">
+            💡 Best Practices & Project Ideas
+          </h1>
+          <p class="text-xl text-gray-600 dark:text-gray-400">
+            Build successful MCP-based projects. Proven strategies, real-world
+            ideas, and production best practices.
+          </p>
+        </div>
+
+        <!-- Development Strategy -->
+        <section id="development-strategy" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">
+            🎯 Successful Development Strategy
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div
+              class="bg-green-50 dark:bg-green-900/20 border-2 border-green-300 dark:border-green-700 rounded-lg p-6"
+            >
+              <div class="text-4xl mb-3">💡</div>
+              <h3 class="text-xl font-bold mb-2">1. Solve Real Problems</h3>
+              <p class="text-sm">
+                Focus on practical solutions to actual pain points, not just
+                technology demos.
+              </p>
+            </div>
+            <div
+              class="bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-300 dark:border-blue-700 rounded-lg p-6"
+            >
+              <div class="text-4xl mb-3">🚀</div>
+              <h3 class="text-xl font-bold mb-2">2. Start Simple</h3>
+              <p class="text-sm">
+                Build a working MVP before adding complexity. Iterate based on
+                real usage.
+              </p>
+            </div>
+            <div
+              class="bg-purple-50 dark:bg-purple-900/20 border-2 border-purple-300 dark:border-purple-700 rounded-lg p-6"
+            >
+              <div class="text-4xl mb-3">🎭</div>
+              <h3 class="text-xl font-bold mb-2">3. Tell Stories</h3>
+              <p class="text-sm">
+                Demonstrate the impact, not just features. Show the value
+                clearly.
+              </p>
+            </div>
+          </div>
+
+          <div class="alert alert-success">
+            <strong>✅ The MCP Advantage:</strong> MCP projects showcase real AI
+            agent autonomy. Agents use tools to solve problems, going beyond
+            simple chatbots to create genuine automation.
+          </div>
+        </section>
+
+        <!-- Project Ideas -->
+        <section id="project-ideas" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">💡 Real-World Project Ideas</h2>
+
+          <!-- Idea 1 -->
+          <div
+            class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 mb-6"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <h3 class="text-2xl font-bold mb-2">
+                  🔍 DevOps Debugging Assistant
+                </h3>
+                <div class="flex gap-2">
+                  <span
+                    class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm"
+                    >High Impact</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm"
+                    >2-3 Tools</span
+                  >
+                </div>
+              </div>
+            </div>
+            <p class="mb-4">
+              <strong>Problem:</strong> Engineers waste hours debugging
+              production issues across logs, metrics, and code.
+            </p>
+            <p class="mb-4">
+              <strong>Solution:</strong> AI agent with MCP tools to analyze
+              logs, query metrics, search code, and suggest fixes.
+            </p>
+            <div class="bg-gray-50 dark:bg-gray-900 rounded p-4">
+              <strong>MCP Tools Needed:</strong>
+              <ul class="list-disc list-inside ml-4 mt-2 space-y-1">
+                <li><code>analyze_logs</code> - Parse application logs</li>
+                <li><code>query_metrics</code> - Fetch performance data</li>
+                <li><code>search_codebase</code> - Find relevant code</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Idea 2 -->
+          <div
+            class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 mb-6"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <h3 class="text-2xl font-bold mb-2">
+                  📊 Automated Report Generator
+                </h3>
+                <div class="flex gap-2">
+                  <span
+                    class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm"
+                    >Business Value</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm"
+                    >3-4 Tools</span
+                  >
+                </div>
+              </div>
+            </div>
+            <p class="mb-4">
+              <strong>Problem:</strong> Teams spend hours compiling data from
+              multiple sources for weekly reports.
+            </p>
+            <p class="mb-4">
+              <strong>Solution:</strong> AI agent that gathers data, analyzes
+              trends, generates insights, and creates presentation-ready
+              reports.
+            </p>
+            <div class="bg-gray-50 dark:bg-gray-900 rounded p-4">
+              <strong>MCP Tools Needed:</strong>
+              <ul class="list-disc list-inside ml-4 mt-2 space-y-1">
+                <li><code>fetch_analytics</code> - Get analytics data</li>
+                <li><code>query_database</code> - Pull business metrics</li>
+                <li><code>generate_charts</code> - Create visualizations</li>
+                <li><code>create_document</code> - Build final report</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Idea 3 -->
+          <div
+            class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 mb-6"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <h3 class="text-2xl font-bold mb-2">
+                  🔔 Smart On-Call Assistant
+                </h3>
+                <div class="flex gap-2">
+                  <span
+                    class="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-full text-sm"
+                    >Critical Need</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 rounded-full text-sm"
+                    >4-5 Tools</span
+                  >
+                </div>
+              </div>
+            </div>
+            <p class="mb-4">
+              <strong>Problem:</strong> On-call engineers need to quickly
+              understand and respond to incidents at any time.
+            </p>
+            <p class="mb-4">
+              <strong>Solution:</strong> Agent that triages alerts, gathers
+              context, identifies root cause, and suggests initial actions.
+            </p>
+            <div class="bg-gray-50 dark:bg-gray-900 rounded p-4">
+              <strong>MCP Tools Needed:</strong>
+              <ul class="list-disc list-inside ml-4 mt-2 space-y-1">
+                <li><code>parse_alert</code> - Extract alert details</li>
+                <li>
+                  <code>check_service_health</code> - Query monitoring systems
+                </li>
+                <li><code>find_recent_changes</code> - Check deployments</li>
+                <li><code>search_runbooks</code> - Find relevant procedures</li>
+                <li><code>notify_team</code> - Alert relevant people</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Idea 4 -->
+          <div
+            class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 mb-6"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <h3 class="text-2xl font-bold mb-2">
+                  📝 Documentation Generator
+                </h3>
+                <div class="flex gap-2">
+                  <span
+                    class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-sm"
+                    >Developer Productivity</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm"
+                    >2-3 Tools</span
+                  >
+                </div>
+              </div>
+            </div>
+            <p class="mb-4">
+              <strong>Problem:</strong> Documentation gets out of date or is
+              never written in the first place.
+            </p>
+            <p class="mb-4">
+              <strong>Solution:</strong> Agent that analyzes code, generates
+              documentation, and keeps it synchronized with changes.
+            </p>
+            <div class="bg-gray-50 dark:bg-gray-900 rounded p-4">
+              <strong>MCP Tools Needed:</strong>
+              <ul class="list-disc list-inside ml-4 mt-2 space-y-1">
+                <li>
+                  <code>analyze_code</code> - Parse and understand code
+                  structure
+                </li>
+                <li>
+                  <code>generate_docs</code> - Create documentation from code
+                </li>
+                <li>
+                  <code>update_wiki</code> - Sync to documentation platform
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Common Pitfalls -->
+        <section id="common-pitfalls" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">⚠️ Common Pitfalls to Avoid</h2>
+
+          <div class="space-y-4">
+            <div
+              class="border-l-4 border-red-500 bg-red-50 dark:bg-red-900/20 p-4 rounded"
+            >
+              <h3 class="font-bold text-lg mb-2">
+                ❌ Building a Chatbot Instead of an Agent
+              </h3>
+              <p class="mb-2">
+                <strong>Bad:</strong> "AI that answers questions about your
+                codebase"
+              </p>
+              <p>
+                <strong>Good:</strong> "AI that analyzes your codebase, finds
+                bugs, and creates GitHub issues"
+              </p>
+            </div>
+
+            <div
+              class="border-l-4 border-orange-500 bg-orange-50 dark:bg-orange-900/20 p-4 rounded"
+            >
+              <h3 class="font-bold text-lg mb-2">
+                ❌ Too Many Features, Nothing Works
+              </h3>
+              <p class="mb-2">
+                <strong>Bad:</strong> "We're building 10 tools but only got 3
+                working"
+              </p>
+              <p>
+                <strong>Good:</strong> "We built 2 polished tools that work
+                perfectly"
+              </p>
+            </div>
+
+            <div
+              class="border-l-4 border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded"
+            >
+              <h3 class="font-bold text-lg mb-2">❌ Ignoring Error Handling</h3>
+              <p class="mb-2">
+                <strong>Bad:</strong> Agent crashes when external API fails
+              </p>
+              <p>
+                <strong>Good:</strong> Graceful degradation with fallback
+                behavior
+              </p>
+            </div>
+
+            <div
+              class="border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-900/20 p-4 rounded"
+            >
+              <h3 class="font-bold text-lg mb-2">❌ No Testing Strategy</h3>
+              <p class="mb-2">
+                <strong>Bad:</strong> Only testing in production
+              </p>
+              <p>
+                <strong>Good:</strong> Unit tests for tools, integration tests
+                for workflows
+              </p>
+            </div>
+
+            <div
+              class="border-l-4 border-purple-500 bg-purple-50 dark:bg-purple-900/20 p-4 rounded"
+            >
+              <h3 class="font-bold text-lg mb-2">❌ Poor Tool Descriptions</h3>
+              <p class="mb-2">
+                <strong>Bad:</strong> "Tool that does stuff with data"
+              </p>
+              <p>
+                <strong>Good:</strong> "Analyzes server logs for error patterns
+                and returns frequency counts by error type"
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Demo Preparation -->
+        <section id="demo-tips" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">🎬 Effective Demo Preparation</h2>
+
+          <div
+            class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-6 text-white mb-6"
+          >
+            <h3 class="text-2xl font-bold mb-4">The Perfect Demo Structure</h3>
+            <div class="space-y-3">
+              <div class="flex items-start">
+                <span class="font-bold mr-3">Phase 1:</span>
+                <span>Hook: Show the problem with a real example</span>
+              </div>
+              <div class="flex items-start">
+                <span class="font-bold mr-3">Phase 2:</span>
+                <span>Problem: Demonstrate the pain point clearly</span>
+              </div>
+              <div class="flex items-start">
+                <span class="font-bold mr-3">Phase 3:</span>
+                <span>Solution: Live demo of your agent solving it</span>
+              </div>
+              <div class="flex items-start">
+                <span class="font-bold mr-3">Phase 4:</span>
+                <span
+                  >Impact: Quantify the value (time saved, errors prevented,
+                  etc.)</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div
+              class="bg-green-50 dark:bg-green-900/20 rounded-lg p-6 border-2 border-green-300 dark:border-green-700"
+            >
+              <h3
+                class="text-xl font-bold mb-3 text-green-700 dark:text-green-300"
+              >
+                ✅ Do This
+              </h3>
+              <ul class="space-y-2 text-sm">
+                <li>✓ Show the agent making autonomous decisions</li>
+                <li>✓ Highlight tool invocations clearly</li>
+                <li>✓ Use real data, not dummy examples</li>
+                <li>✓ Have a backup video recording</li>
+                <li>✓ Practice your demo multiple times</li>
+                <li>✓ Show the architecture diagram</li>
+                <li>✓ Explain the business value</li>
+              </ul>
+            </div>
+
+            <div
+              class="bg-red-50 dark:bg-red-900/20 rounded-lg p-6 border-2 border-red-300 dark:border-red-700"
+            >
+              <h3 class="text-xl font-bold mb-3 text-red-700 dark:text-red-300">
+                ❌ Don't Do This
+              </h3>
+              <ul class="space-y-2 text-sm">
+                <li>✗ Spend too much time explaining code</li>
+                <li>✗ Show debugging or setup process</li>
+                <li>✗ Use technical jargon without explanation</li>
+                <li>✗ Demo features that don't work yet</li>
+                <li>✗ Skip over errors or failures</li>
+                <li>✗ Forget to prepare for questions</li>
+                <li>✗ Assume prior knowledge</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Architecture Communication -->
+        <section id="architecture-storytelling" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">
+            📐 Communicating Your Architecture
+          </h2>
+
+          <p class="text-lg mb-6">
+            Clear architecture diagrams help others understand your MCP system:
+          </p>
+
+          <div
+            class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 mb-6"
+          >
+            <h3 class="text-xl font-bold mb-4">Example Architecture Diagram</h3>
+            <div class="diagram">
+              <div class="text-center space-y-4">
+                <div
+                  class="bg-purple-100 dark:bg-purple-900/30 border-2 border-purple-500 rounded-lg p-4 inline-block"
+                >
+                  <strong>AI Agent</strong><br />
+                  <span class="text-sm">(GPT-4 with MCP client)</span>
+                </div>
+                <div class="text-2xl">↓</div>
+                <div
+                  class="bg-blue-100 dark:bg-blue-900/30 border-2 border-blue-500 rounded-lg p-4 inline-block"
+                >
+                  <strong>Archestra Gateway</strong><br />
+                  <span class="text-sm">(Tool routing layer)</span>
+                </div>
+                <div class="text-2xl">↓</div>
+                <div class="grid grid-cols-3 gap-4">
+                  <div
+                    class="bg-green-100 dark:bg-green-900/30 border-2 border-green-500 rounded-lg p-3"
+                  >
+                    <strong>MCP Server 1</strong><br />
+                    <span class="text-xs">Logs Tool</span>
+                  </div>
+                  <div
+                    class="bg-green-100 dark:bg-green-900/30 border-2 border-green-500 rounded-lg p-3"
+                  >
+                    <strong>MCP Server 2</strong><br />
+                    <span class="text-xs">Metrics Tool</span>
+                  </div>
+                  <div
+                    class="bg-green-100 dark:bg-green-900/30 border-2 border-green-500 rounded-lg p-3"
+                  >
+                    <strong>MCP Server 3</strong><br />
+                    <span class="text-xs">Alert Tool</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-info">
+            <strong>💡 Pro Tip:</strong> Walk through the architecture diagram
+            in presentations. Say "When the agent needs X, it calls this MCP
+            server..." Clear communication shows you understand the system.
+          </div>
+        </section>
+
+        <!-- Production Checklist -->
+        <section id="production-checklist" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">
+            ✅ Production Readiness Checklist
+          </h2>
+
+          <div class="space-y-6">
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700"
+            >
+              <h3 class="text-xl font-bold mb-4">
+                🔒 Security & Authentication
+              </h3>
+              <div class="space-y-2">
+                <label class="flex items-start">
+                  <input type="checkbox" class="mt-1 mr-3" />
+                  <span
+                    >API keys and secrets stored securely (not in code)</span
+                  >
+                </label>
+                <label class="flex items-start">
+                  <input type="checkbox" class="mt-1 mr-3" />
+                  <span>Rate limiting implemented on all tools</span>
+                </label>
+                <label class="flex items-start">
+                  <input type="checkbox" class="mt-1 mr-3" />
+                  <span>Input validation on all tool parameters</span>
+                </label>
+                <label class="flex items-start">
+                  <input type="checkbox" class="mt-1 mr-3" />
+                  <span>Authentication required for agent access</span>
+                </label>
+              </div>
+            </div>
+
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700"
+            >
+              <h3 class="text-xl font-bold mb-4">
+                📊 Monitoring & Observability
+              </h3>
+              <div class="space-y-2">
+                <label class="flex items-start">
+                  <input type="checkbox" class="mt-1 mr-3" />
+                  <span>Logging configured for all tool invocations</span>
+                </label>
+                <label class="flex items-start">
+                  <input type="checkbox" class="mt-1 mr-3" />
+                  <span>Metrics tracking (success rate, latency, errors)</span>
+                </label>
+                <label class="flex items-start">
+                  <input type="checkbox" class="mt-1 mr-3" />
+                  <span>Alerting set up for critical failures</span>
+                </label>
+                <label class="flex items-start">
+                  <input type="checkbox" class="mt-1 mr-3" />
+                  <span>Dashboard for monitoring agent health</span>
+                </label>
+              </div>
+            </div>
+
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700"
+            >
+              <h3 class="text-xl font-bold mb-4">🧪 Testing & Quality</h3>
+              <div class="space-y-2">
+                <label class="flex items-start">
+                  <input type="checkbox" class="mt-1 mr-3" />
+                  <span>Unit tests for each MCP tool</span>
+                </label>
+                <label class="flex items-start">
+                  <input type="checkbox" class="mt-1 mr-3" />
+                  <span>Integration tests for multi-tool workflows</span>
+                </label>
+                <label class="flex items-start">
+                  <input type="checkbox" class="mt-1 mr-3" />
+                  <span>Error handling tested for all failure modes</span>
+                </label>
+                <label class="flex items-start">
+                  <input type="checkbox" class="mt-1 mr-3" />
+                  <span>Load testing for expected usage patterns</span>
+                </label>
+              </div>
+            </div>
+
+            <div
+              class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700"
+            >
+              <h3 class="text-xl font-bold mb-4">📚 Documentation</h3>
+              <div class="space-y-2">
+                <label class="flex items-start">
+                  <input type="checkbox" class="mt-1 mr-3" />
+                  <span>All tools have clear descriptions</span>
+                </label>
+                <label class="flex items-start">
+                  <input type="checkbox" class="mt-1 mr-3" />
+                  <span>API documentation complete</span>
+                </label>
+                <label class="flex items-start">
+                  <input type="checkbox" class="mt-1 mr-3" />
+                  <span>Architecture diagram available</span>
+                </label>
+                <label class="flex items-start">
+                  <input type="checkbox" class="mt-1 mr-3" />
+                  <span>Runbook for common issues</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Final Best Practices -->
+        <div
+          class="bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg p-8 text-white"
+        >
+          <h2 class="text-3xl font-bold mb-4">🎯 Key Takeaways</h2>
+          <ul class="space-y-3 text-lg">
+            <li>
+              ✓ <strong>Start simple:</strong> One amazing tool beats three
+              mediocre ones
+            </li>
+            <li>
+              ✓ <strong>Show autonomy:</strong> Let the agent make decisions,
+              don't hard-code everything
+            </li>
+            <li>
+              ✓ <strong>Measure impact:</strong> "Saves 5 hours/week" is more
+              compelling than "uses AI"
+            </li>
+            <li>
+              ✓ <strong>Plan for failure:</strong> Every external call can fail
+              - handle it gracefully
+            </li>
+            <li>
+              ✓ <strong>Document well:</strong> Future you (and others) will
+              thank you
+            </li>
+            <li>
+              ✓ <strong>Test thoroughly:</strong> Automated tests prevent
+              regression
+            </li>
+            <li>
+              ✓ <strong>Monitor everything:</strong> You can't improve what you
+              don't measure
+            </li>
+          </ul>
+          <div class="mt-6 text-center">
+            <p class="text-2xl font-bold">Now build something amazing! 🚀</p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/code-copy.js"></script>
+  </body>
+</html>

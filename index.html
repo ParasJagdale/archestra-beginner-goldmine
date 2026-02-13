@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Archestra Beginner Goldmine - Learn MCP Agent Development</title>
+    <meta
+      name="description"
+      content="Your complete guide to learning Archestra and MCP (Model Context Protocol) from zero to hero"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/main.css" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#3b82f6",
+              secondary: "#8b5cf6",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200"
+  >
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 z-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <span
+              class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
+            >
+              ⚡ Archestra Goldmine
+            </span>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="relative hidden md:block">
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Search docs..."
+                class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary w-64"
+              />
+              <div
+                id="search-results"
+                class="hidden absolute top-full mt-2 w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg max-h-96 overflow-y-auto"
+              ></div>
+            </div>
+            <button
+              id="theme-toggle"
+              class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            >
+              <svg
+                class="w-6 h-6 hidden dark:block"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                ></path>
+              </svg>
+              <svg
+                class="w-6 h-6 block dark:hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                ></path>
+              </svg>
+            </button>
+            <a
+              href="https://github.com/archestra/archestra"
+              target="_blank"
+              class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="pt-16">
+      <div
+        class="relative bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 text-white overflow-hidden"
+      >
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div
+          class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32"
+        >
+          <div class="text-center">
+            <h1
+              class="text-5xl sm:text-6xl font-extrabold mb-6 animate-fade-in"
+            >
+              Welcome to Archestra<br />Beginner Goldmine 🎯
+            </h1>
+            <p class="text-xl sm:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
+              Your complete guide to mastering MCP-based AI agent development<br />
+              From zero to production-ready in hours, not weeks.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+              <a
+                href="getting-started.html"
+                class="px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg"
+              >
+                🚀 Get Started
+              </a>
+              <a
+                href="tutorials.html"
+                class="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all transform hover:scale-105"
+              >
+                📚 View Tutorials
+              </a>
+              <a
+                href="troubleshooting.html"
+                class="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all transform hover:scale-105"
+              >
+                🐛 Troubleshooting
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700"
+          >
+            <div class="text-3xl mb-2">⚡</div>
+            <div class="text-2xl font-bold mb-2">Zero to Hero</div>
+            <p class="text-gray-600 dark:text-gray-400">
+              Complete beginner-friendly path from MCP basics to production
+            </p>
+          </div>
+          <div
+            class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700"
+          >
+            <div class="text-3xl mb-2">🧪</div>
+            <div class="text-2xl font-bold mb-2">Live Examples</div>
+            <p class="text-gray-600 dark:text-gray-400">
+              Copy-paste ready templates and working code samples
+            </p>
+          </div>
+          <div
+            class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700"
+          >
+            <div class="text-3xl mb-2">🏆</div>
+            <div class="text-2xl font-bold mb-2">Production Ready</div>
+            <p class="text-gray-600 dark:text-gray-400">
+              Build robust projects with proven patterns
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <!-- Learning Path -->
+        <section class="mb-16">
+          <h2 class="text-4xl font-bold mb-8 text-center">
+            🎓 Your Learning Journey
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Level 1 -->
+            <div
+              class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg p-6 border-2 border-green-300 dark:border-green-700"
+            >
+              <div
+                class="text-green-600 dark:text-green-400 text-sm font-bold mb-2"
+              >
+                LEVEL 1 - FOUNDATIONS
+              </div>
+              <h3 class="text-2xl font-bold mb-4">🌱 Beginner</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-2">✓</span>
+                  <span>What is Archestra</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-2">✓</span>
+                  <span>MCP fundamentals</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-2">✓</span>
+                  <span>Agent concepts</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-2">✓</span>
+                  <span>Setup your environment</span>
+                </li>
+              </ul>
+              <a
+                href="getting-started.html"
+                class="mt-6 block text-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              >
+                Start Here →
+              </a>
+            </div>
+
+            <!-- Level 2 -->
+            <div
+              class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg p-6 border-2 border-blue-300 dark:border-blue-700"
+            >
+              <div
+                class="text-blue-600 dark:text-blue-400 text-sm font-bold mb-2"
+              >
+                LEVEL 2 - BUILDING
+              </div>
+              <h3 class="text-2xl font-bold mb-4">🔨 Intermediate</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="text-blue-500 mr-2">✓</span>
+                  <span>MCP server setup</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-blue-500 mr-2">✓</span>
+                  <span>Gateway connection</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-blue-500 mr-2">✓</span>
+                  <span>Tool creation</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-blue-500 mr-2">✓</span>
+                  <span>Debug workflows</span>
+                </li>
+              </ul>
+              <a
+                href="tutorials.html"
+                class="mt-6 block text-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                View Tutorials →
+              </a>
+            </div>
+
+            <!-- Level 3 -->
+            <div
+              class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg p-6 border-2 border-purple-300 dark:border-purple-700"
+            >
+              <div
+                class="text-purple-600 dark:text-purple-400 text-sm font-bold mb-2"
+              >
+                LEVEL 3 - MASTERY
+              </div>
+              <h3 class="text-2xl font-bold mb-4">🚀 Advanced</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="text-purple-500 mr-2">✓</span>
+                  <span>Multi-tool orchestration</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-purple-500 mr-2">✓</span>
+                  <span>Production workflows</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-purple-500 mr-2">✓</span>
+                  <span>Observability setup</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-purple-500 mr-2">✓</span>
+                  <span>Scale your agents</span>
+                </li>
+              </ul>
+              <a
+                href="architecture.html"
+                class="mt-6 block text-center px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+              >
+                Deep Dive →
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="mb-16">
+          <h2 class="text-4xl font-bold mb-8 text-center">
+            🎯 Popular Resources
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <a
+              href="mcp-basics.html"
+              class="group bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-all hover:shadow-lg"
+            >
+              <div class="text-4xl mb-3">📖</div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400"
+              >
+                MCP Basics
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400">
+                Learn the Model Context Protocol from scratch
+              </p>
+            </a>
+            <a
+              href="troubleshooting.html"
+              class="group bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-all hover:shadow-lg"
+            >
+              <div class="text-4xl mb-3">🐛</div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400"
+              >
+                Troubleshooting
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400">
+                Solve common setup and runtime errors
+              </p>
+            </a>
+            <a
+              href="templates.html"
+              class="group bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-all hover:shadow-lg"
+            >
+              <div class="text-4xl mb-3">🧰</div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400"
+              >
+                Code Templates
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400">
+                Ready-to-use MCP server and tool templates
+              </p>
+            </a>
+            <a
+              href="best-practices.html"
+              class="group bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-all hover:shadow-lg"
+            >
+              <div class="text-4xl mb-3">💡</div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400"
+              >
+                Best Practices
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400">
+                Production patterns and project ideas
+              </p>
+            </a>
+          </div>
+        </section>
+
+        <!-- Progress Tracker -->
+        <section class="mb-16">
+          <div
+            class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-8 text-white"
+          >
+            <h2 class="text-3xl font-bold mb-6">📊 Track Your Progress</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="flex items-center">
+                <input
+                  type="checkbox"
+                  id="check1"
+                  class="w-5 h-5 mr-3 rounded"
+                />
+                <label for="check1" class="cursor-pointer"
+                  >✔ Installed Archestra</label
+                >
+              </div>
+              <div class="flex items-center">
+                <input
+                  type="checkbox"
+                  id="check2"
+                  class="w-5 h-5 mr-3 rounded"
+                />
+                <label for="check2" class="cursor-pointer"
+                  >✔ Created MCP server</label
+                >
+              </div>
+              <div class="flex items-center">
+                <input
+                  type="checkbox"
+                  id="check3"
+                  class="w-5 h-5 mr-3 rounded"
+                />
+                <label for="check3" class="cursor-pointer"
+                  >✔ Connected gateway</label
+                >
+              </div>
+              <div class="flex items-center">
+                <input
+                  type="checkbox"
+                  id="check4"
+                  class="w-5 h-5 mr-3 rounded"
+                />
+                <label for="check4" class="cursor-pointer"
+                  >✔ Built first tool</label
+                >
+              </div>
+              <div class="flex items-center">
+                <input
+                  type="checkbox"
+                  id="check5"
+                  class="w-5 h-5 mr-3 rounded"
+                />
+                <label for="check5" class="cursor-pointer"
+                  >✔ Debugged an error</label
+                >
+              </div>
+              <div class="flex items-center">
+                <input
+                  type="checkbox"
+                  id="check6"
+                  class="w-5 h-5 mr-3 rounded"
+                />
+                <label for="check6" class="cursor-pointer"
+                  >✔ Deployed to production</label
+                >
+              </div>
+            </div>
+            <div class="mt-6">
+              <div class="bg-white/20 rounded-full h-4 overflow-hidden">
+                <div
+                  id="progress-bar"
+                  class="bg-white h-full transition-all duration-300"
+                  style="width: 0%"
+                ></div>
+              </div>
+              <p class="mt-2 text-sm opacity-90">
+                Complete all checkpoints to become an Archestra expert!
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Community -->
+        <section class="text-center">
+          <h2 class="text-4xl font-bold mb-6">🌍 Join the Community</h2>
+          <p
+            class="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto"
+          >
+            This is a community-driven learning hub. Contribute your knowledge,
+            share your experiences, and help others succeed.
+          </p>
+          <a
+            href="https://github.com/archestra/archestra"
+            target="_blank"
+            class="inline-block px-8 py-4 bg-gray-900 dark:bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-800 dark:hover:bg-gray-600 transition-all transform hover:scale-105"
+          >
+            ⭐ Star on GitHub
+          </a>
+        </section>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer
+      class="bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-16"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="font-bold mb-4">Getting Started</h3>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+              <li>
+                <a href="getting-started.html" class="hover:text-blue-600"
+                  >Introduction</a
+                >
+              </li>
+              <li>
+                <a href="mcp-basics.html" class="hover:text-blue-600"
+                  >MCP Basics</a
+                >
+              </li>
+              <li>
+                <a href="tutorials.html" class="hover:text-blue-600"
+                  >Tutorials</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold mb-4">Resources</h3>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+              <li>
+                <a href="templates.html" class="hover:text-blue-600"
+                  >Templates</a
+                >
+              </li>
+              <li>
+                <a href="troubleshooting.html" class="hover:text-blue-600"
+                  >Troubleshooting</a
+                >
+              </li>
+              <li>
+                <a href="architecture.html" class="hover:text-blue-600"
+                  >Architecture</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold mb-4">Community</h3>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+              <li>
+                <a href="best-practices.html" class="hover:text-blue-600"
+                  >Best Practices</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://github.com/archestra"
+                  class="hover:text-blue-600"
+                  >GitHub</a
+                >
+              </li>
+              <li><a href="#" class="hover:text-blue-600">Contribute</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold mb-4">About</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Built with ❤️ by the Archestra community to help beginners master
+              MCP-based agent development.
+            </p>
+          </div>
+        </div>
+        <div
+          class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 text-center text-gray-600 dark:text-gray-400"
+        >
+          <p>
+            &copy; 2026 Archestra Beginner Goldmine. Open source and
+            community-driven.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/theme.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/progress.js"></script>
+  </body>
+</html>

@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Templates - Archestra Beginner Goldmine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/main.css" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: { colors: { primary: "#3b82f6", secondary: "#8b5cf6" } },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 z-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a
+              href="index.html"
+              class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
+            >
+              ⚡ Archestra Goldmine
+            </a>
+          </div>
+          <div class="flex items-center gap-4">
+            <button
+              id="theme-toggle"
+              class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              <svg
+                class="w-6 h-6 hidden dark:block"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                ></path>
+              </svg>
+              <svg
+                class="w-6 h-6 block dark:hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex pt-16">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <nav class="space-y-6">
+          <div>
+            <a
+              href="index.html"
+              class="block text-gray-600 dark:text-gray-400 hover:text-blue-600 mb-2"
+              >← Back to Home</a
+            >
+          </div>
+          <div>
+            <h3 class="font-bold mb-2">Templates</h3>
+            <ul class="space-y-1 text-sm">
+              <li>
+                <a
+                  href="#basic-server"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Basic MCP Server</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#log-analyzer"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Log Analyzer</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#github-automation"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >GitHub Automation</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#slack-alerts"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Slack Alerts</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#database-tool"
+                  class="block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+                  >Database Tool</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content flex-1 max-w-4xl">
+        <div class="mb-8">
+          <h1 class="text-5xl font-bold mb-4">🧰 MCP Code Templates</h1>
+          <p class="text-xl text-gray-600 dark:text-gray-400">
+            Ready-to-copy MCP server and tool templates. Just paste, customize,
+            and deploy!
+          </p>
+        </div>
+
+        <!-- Template 1: Basic MCP SDK Server -->
+        <section id="basic-server" class="mb-12">
+          <div
+            class="bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-lg p-6 mb-4"
+          >
+            <h2 class="text-3xl font-bold mb-2">
+              📦 Basic MCP SDK Server Template
+            </h2>
+            <p class="text-lg opacity-90">
+              Perfect starting point for any MCP server
+            </p>
+          </div>
+
+          <p class="mb-4 text-lg">
+            A minimal, production-ready MCP server with proper error handling
+            and logging.
+          </p>
+
+          <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 mb-4">
+            <strong>Features:</strong>
+            <ul class="list-disc list-inside ml-4 mt-2">
+              <li>TypeScript support</li>
+              <li>Stdio and SSE transports</li>
+              <li>Error handling</li>
+              <li>Example tool included</li>
+            </ul>
+          </div>
+
+          <h3 class="text-xl font-bold mb-3">server.ts</h3>
+          <div class="code-block relative mb-6">
+            <pre><code>#!/usr/bin/env node
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import {
+  CallToolRequestSchema,
+  ListToolsRequestSchema,
+} from "@modelcontextprotocol/sdk/types.js";
+
+interface ToolArguments {
+  [key: string]: unknown;
+}
+
+// Define your tools
+const TOOLS = [
+  {
+    name: "example_tool",
+    description: "An example tool that echoes input",
+    inputSchema: {
+      type: "object",
+      properties: {
+        message: {
+          type: "string",
+          description: "Message to echo back"
+        }
+      },
+      required: ["message"]
+    }
+  }
+];
+
+// Create server instance
+const server = new Server(
+  {
+    name: "my-mcp-server",
+    version: "1.0.0",
+  },
+  {
+    capabilities: {
+      tools: {},
+    },
+  }
+);
+
+// List available tools
+server.setRequestHandler(ListToolsRequestSchema, async () => {
+  return { tools: TOOLS };
+});
+
+// Execute tool calls
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const { name, arguments: args } = request.params;
+  
+  try {
+    switch (name) {
+      case "example_tool": {
+        const { message } = args as ToolArguments;
+        return {
+          content: [
+            {
+              type: "text",
+              text: `Echo: ${message}`
+            }
+          ]
+        };
+      }
+      
+      default:
+        throw new Error(`Unknown tool: ${name}`);
+    }
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    return {
+      content: [
+        {
+          type: "text",
+          text: `Error: ${errorMessage}`
+        }
+      ],
+      isError: true
+    };
+  }
+});
+
+// Start server
+async function main() {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+  console.error("MCP Server running on stdio");
+}
+
+main().catch((error) => {
+  console.error("Fatal error:", error);
+  process.exit(1);
+});
+</code></pre>
+          </div>
+
+          <h3 class="text-xl font-bold mb-3">package.json</h3>
+          <div class="code-block relative mb-6">
+            <pre><code>{
+  "name": "my-mcp-server",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "my-mcp-server": "./build/server.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/server.js",
+    "dev": "tsx watch server.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0"
+  }
+}
+</code></pre>
+          </div>
+        </section>
+
+        <!-- Template 2: Log Analyzer -->
+        <section id="log-analyzer" class="mb-12">
+          <div
+            class="bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-lg p-6 mb-4"
+          >
+            <h2 class="text-3xl font-bold mb-2">📊 Log Analyzer MCP Tool</h2>
+            <p class="text-lg opacity-90">
+              Analyze logs and extract insights with AI
+            </p>
+          </div>
+
+          <div class="code-block relative mb-6">
+            <pre><code>import fs from 'fs/promises';
+import path from 'path';
+
+// Add to your TOOLS array
+{
+  name: "analyze_logs",
+  description: "Analyze log files for errors, patterns, and insights",
+  inputSchema: {
+    type: "object",
+    properties: {
+      logPath: {
+        type: "string",
+        description: "Path to the log file"
+      },
+      pattern: {
+        type: "string",
+        description: "Optional regex pattern to search for"
+      },
+      maxLines: {
+        type: "number",
+        description: "Maximum number of lines to analyze",
+        default: 1000
+      }
+    },
+    required: ["logPath"]
+  }
+}
+
+// Add to your tool handler
+case "analyze_logs": {
+  const { logPath, pattern, maxLines = 1000 } = args;
+  
+  // Read log file
+  const content = await fs.readFile(logPath, 'utf-8');
+  const lines = content.split('\n').slice(0, maxLines);
+  
+  // Analyze logs
+  const results = {
+    totalLines: lines.length,
+    errors: lines.filter(line => /error|exception|fail/i.test(line)).length,
+    warnings: lines.filter(line => /warn|warning/i.test(line)).length,
+    matched: pattern ? lines.filter(line => new RegExp(pattern).test(line)) : []
+  };
+  
+  return {
+    content: [
+      {
+        type: "text",
+        text: JSON.stringify(results, null, 2)
+      }
+    ]
+  };
+}
+</code></pre>
+          </div>
+        </section>
+
+        <!-- Template 3: GitHub Automation -->
+        <section id="github-automation" class="mb-12">
+          <div
+            class="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg p-6 mb-4"
+          >
+            <h2 class="text-3xl font-bold mb-2">
+              🐙 GitHub Automation MCP Tool
+            </h2>
+            <p class="text-lg opacity-90">
+              Create issues, PRs, and manage repositories
+            </p>
+          </div>
+
+          <div class="code-block relative mb-6">
+            <pre><code>import { Octokit } from '@octokit/rest';
+
+// Initialize GitHub client
+const octokit = new Octokit({
+  auth: process.env.GITHUB_TOKEN
+});
+
+// Add to your TOOLS array
+{
+  name: "create_github_issue",
+  description: "Create a new GitHub issue",
+  inputSchema: {
+    type: "object",
+    properties: {
+      owner: {
+        type: "string",
+        description: "Repository owner"
+      },
+      repo: {
+        type: "string",
+        description: "Repository name"
+      },
+      title: {
+        type: "string",
+        description: "Issue title"
+      },
+      body: {
+        type: "string",
+        description: "Issue body/description"
+      },
+      labels: {
+        type: "array",
+        items: { type: "string" },
+        description: "Array of label names"
+      }
+    },
+    required: ["owner", "repo", "title"]
+  }
+}
+
+// Add to your tool handler
+case "create_github_issue": {
+  const { owner, repo, title, body, labels } = args;
+  
+  const issue = await octokit.rest.issues.create({
+    owner,
+    repo,
+    title,
+    body: body || '',
+    labels: labels || []
+  });
+  
+  return {
+    content: [
+      {
+        type: "text",
+        text: `Created issue #${issue.data.number}: ${issue.data.html_url}`
+      }
+    ]
+  };
+}
+</code></pre>
+          </div>
+
+          <div class="alert alert-info">
+            <strong>💡 Setup Required:</strong> Install
+            <code>@octokit/rest</code> and set
+            <code>GITHUB_TOKEN</code> environment variable.
+          </div>
+        </section>
+
+        <!-- Template 4: Slack Alerts -->
+        <section id="slack-alerts" class="mb-12">
+          <div
+            class="bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-lg p-6 mb-4"
+          >
+            <h2 class="text-3xl font-bold mb-2">💬 Slack Alert MCP Tool</h2>
+            <p class="text-lg opacity-90">
+              Send notifications and messages to Slack
+            </p>
+          </div>
+
+          <div class="code-block relative mb-6">
+            <pre><code>import { WebClient } from '@slack/web-api';
+
+// Initialize Slack client
+const slack = new WebClient(process.env.SLACK_TOKEN);
+
+// Add to your TOOLS array
+{
+  name: "send_slack_message",
+  description: "Send a message to a Slack channel",
+  inputSchema: {
+    type: "object",
+    properties: {
+      channel: {
+        type: "string",
+        description: "Channel ID or name (e.g., #general)"
+      },
+      message: {
+        type: "string",
+        description: "Message text"
+      },
+      priority: {
+        type: "string",
+        enum: ["info", "warning", "error"],
+        description: "Message priority level"
+      },
+      mention: {
+        type: "string",
+        description: "Optional user to mention (e.g., @channel, @here)"
+      }
+    },
+    required: ["channel", "message"]
+  }
+}
+
+// Add to your tool handler
+case "send_slack_message": {
+  const { channel, message, priority = 'info', mention } = args;
+  
+  const emojiMap = {
+    info: ':information_source:',
+    warning: ':warning:',
+    error: ':rotating_light:'
+  };
+  
+  const formattedMessage = `${emojiMap[priority]} ${mention ? mention + ' ' : ''}${message}`;
+  
+  const result = await slack.chat.postMessage({
+    channel,
+    text: formattedMessage
+  });
+  
+  return {
+    content: [
+      {
+        type: "text",
+        text: `Message sent to ${channel} (ts: ${result.ts})`
+      }
+    ]
+  };
+}
+</code></pre>
+          </div>
+
+          <div class="alert alert-info">
+            <strong>💡 Setup Required:</strong> Install
+            <code>@slack/web-api</code> and set
+            <code>SLACK_TOKEN</code> environment variable.
+          </div>
+        </section>
+
+        <!-- Template 5: Database Tool -->
+        <section id="database-tool" class="mb-12">
+          <div
+            class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg p-6 mb-4"
+          >
+            <h2 class="text-3xl font-bold mb-2">🗄️ Database Query MCP Tool</h2>
+            <p class="text-lg opacity-90">Safe read-only database queries</p>
+          </div>
+
+          <div class="code-block relative mb-6">
+            <pre><code>import { createPool } from '@vercel/postgres';
+
+// Initialize database connection
+const db = createPool({
+  connectionString: process.env.DATABASE_URL
+});
+
+// Add to your TOOLS array
+{
+  name: "query_database",
+  description: "Execute a read-only SQL query",
+  inputSchema: {
+    type: "object",
+    properties: {
+      query: {
+        type: "string",
+        description: "SQL query to execute (SELECT only)"
+      },
+      limit: {
+        type: "number",
+        description: "Maximum rows to return",
+        default: 100
+      }
+    },
+    required: ["query"]
+  }
+}
+
+// Add to your tool handler
+case "query_database": {
+  const { query, limit = 100 } = args;
+  
+  // Safety: Only allow SELECT queries
+  if (!query.trim().toLowerCase().startsWith('select')) {
+    throw new Error('Only SELECT queries are allowed');
+  }
+  
+  // Add LIMIT if not present
+  const safeQuery = query.includes('LIMIT') 
+    ? query 
+    : `${query} LIMIT ${limit}`;
+  
+  const result = await db.query(safeQuery);
+  
+  return {
+    content: [
+      {
+        type: "text",
+        text: JSON.stringify({
+          rows: result.rows,
+          count: result.rowCount
+        }, null, 2)
+      }
+    ]
+  };
+}
+</code></pre>
+          </div>
+
+          <div class="alert alert-warning">
+            <strong>⚠️ Security:</strong> This template only allows SELECT
+            queries. Always validate and sanitize user input!
+          </div>
+        </section>
+
+        <!-- Quick Start -->
+        <div
+          class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-8 text-white"
+        >
+          <h2 class="text-3xl font-bold mb-4">🚀 Quick Start with Templates</h2>
+          <div class="space-y-4 text-lg">
+            <p><strong>1.</strong> Copy the template code above</p>
+            <p><strong>2.</strong> Install required dependencies</p>
+            <p><strong>3.</strong> Customize for your use case</p>
+            <p><strong>4.</strong> Test locally</p>
+            <p><strong>5.</strong> Deploy to production!</p>
+          </div>
+          <div class="mt-6">
+            <a
+              href="tutorials.html"
+              class="inline-block px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100"
+            >
+              Back to Tutorials
+            </a>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/code-copy.js"></script>
+  </body>
+</html>
